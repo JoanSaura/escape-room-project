@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/main.css" />
-    <title>Escape The Room</title>
-  </head>
-  <body>
-    <div class="contenedor">
-      <img src="/src/img/Logotipo.png" alt="" class="logo" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <title>Escape The Room</title>
+</head>
+<body>
+  <div class="contenedor">
+    <img src="/src/img/Logotipo.png" alt="" class="logo" />
 
-      <div class="menu-botones">
-        <div class="boton-menu">
-          <p>Nuevo juego</p>
-        </div>
-        <div class="boton-menu">
-          <p>Continuar</p>
-        </div>
-        <div class="gestion-usuarios">
-          <p>Gesion de usuarios</p>
-        </div>
-        <p id="user">No hay ningun usuario registrado</p>
-        <div class="boton-menu" id="Cerrar">
-          <p>Cerrar</p>
-        </div>
+    <div class="menu-botones">
+      <div class="boton-menu">
+        <p>Nuevo juego</p>
       </div>
-
-      <div id="menu-usuarios">
-        <h4>Gestion de usuarios</h4>
-        <div class="boton-usuarios">
-          <p>Crear usuarios</p>
-        </div>
-        <div class="boton-usuarios">
-          <p>Iniciar Sesion</p>
-        </div>
-        <div class="boton-usuarios">
-          <p>Volver atras</p>
-        </div>
+      <div class="boton-menu">
+        <p>Continuar</p>
+      </div>
+      <div class="gestion-usuarios" id="mostrar-crear-usuario">
+        <p>Gestion de usuarios</p>
+      </div>
+      <p id="user">No hay ningún usuario registrado</p>
+      <div class="boton-menu" id="Cerrar">
+        <p>Cerrar</p>
       </div>
     </div>
 
-    <div id="crear-usuario">
-      <h5>Creación de usuario</h5>
-      <input type="text" name="" id="" placeholder="Nombre">
-      <input type="password" name="" id="" placeholder="Contraseña">
+    <div id="menu-usuarios">
+      <h4>Gestion de usuarios</h4>
+      <div class="boton-usuarios" id="crear-usuario-btn">
+        <p>Crear usuarios</p>
+      </div>
+      <div class="boton-usuarios">
+        <p>Iniciar Sesión</p>
+      </div>
+      <div class="boton-usuarios">
+        <p id="cerrar-menu-usuarios">Volver atrás</p>
+      </div>
     </div>
+  </div>
 
+  <div id="crear-usuario">
+    <p id="cerrar-crear-usuario">X</p>
+    <h5>Creación de usuario</h5>
+    <input type="text" name="" id="" placeholder="Nombre">
+    <input type="password" name="" id="" placeholder="Contraseña">
+  </div>
 
-    <div id="iniciar-sesion">
-      <h5>Inicio de Sesion</h5>
-    </div>
+  <div id="iniciar-sesion">
+    <h5>Inicio de Sesión</h5>
+  </div>
 
-    <div class="boton-manual">
-      <a href="manual.html" class="manual">?</a>
-    </div>
+  <div class="boton-manual">
+    <a href="manual.html" class="manual">?</a>
+  </div>
 
-    <script src="/scripts/menus.js"></script>
-  </body>
+  <script src="/scripts/menus.js"></script>
+</body>
 </html>

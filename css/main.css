@@ -98,28 +98,39 @@ body {
 /*Pop-ups para inicio de sesion y Creacion de usuario*/
 
 #crear-usuario {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   margin-top: 10px;
   background-image: url(/src/img/papel-fondo-2.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  display: flex;
+  display: none;
   flex-direction: column;
-  border-radius: 25px 25px 0px 0px;
-  padding: 2px;
-  margin-left: 15%;
-  margin-right: 15%;
-  display: flex;
+  border-radius: 25px;
+  width: 70%; 
+}
+
+#crear-usuario > p {
+  text-align: center;
+  margin-left: 96%;
+  cursor: pointer;
+}
+#crear-usuario > p:hover {
+  background-color: red;
+  color: aliceblue;
 }
 #crear-usuario h5 {
   font-size: 185%;
   text-align: center;
   font-family: Rubik Burned;
 }
+
 #crear-usuario input {
-  align-items: center;
   margin: 6px;
-  max-width: 65%;
+  max-width: 100%; 
   padding: 1%;
   border-radius: 25px;
 }
