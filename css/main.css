@@ -2,6 +2,33 @@ body {
   background-color: black;
 }
 /*Menu de inicio*/
+#menu-usuarios {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.8); /* Cambiado a un color semitransparente */
+  padding: 10px;
+  transition: right 0.3s ease;
+  width: 245px; 
+  box-sizing: border-box;
+  backdrop-filter: blur(5px); /* Añadido el efecto de desenfoque */
+}
+
+
+#menu-usuarios h4 {
+  color: aliceblue;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-bottom: 20px; 
+}
+.menu-botones {
+  margin-top: 125px;
+  right: 25%;
+}
+.logo {
+  margin: 120px;
+  transform: rotate(15deg); 
+}
 .boton {
   background-color: red;
   color: aliceblue;
@@ -12,63 +39,30 @@ body {
   align-items: center;
   margin-top: 50px;
 }
+#user {
+  color: aliceblue;
+  margin-left: 6px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
 .boton a:hover {
     color: aqua;
     transition: 0.5;
 }
-.boton-menu {
+.boton-menu, .boton-usuarios{
   background-color: red;
   border-radius: 25px;
   padding: 10px;
   margin-top: 5px;
   max-width: 25%;
   border: 3px solid white;
+  cursor: [];
 }
-.boton-menu:hover {
+.boton-menu:hover ,.boton-usuarios:hover {
   background-color: bisque;
   color: red;
   transform: 1.2;
 }
-/*La secion del manual para el usuario*/
-.contenedor-manual {
-  display: flex;
-  background-image: url(/img/papel-fondo.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 20px;
-  justify-content: center; 
-  align-items: center;
-  border: solid 5px white;
-}
-.contenedor-manual h3 {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  align-items: center;
-  font-size: x-large;
-}
-
-.volver {
-  display: flex;
-  background-color: red;
-  color: aliceblue;
-  border-radius: 25px;
-  max-width: 215px;
-  max-height: 110px;
-  margin-top: 20px;
-  margin-right: 25px;
-  align-items: center; /* Añadido para centrar verticalmente los elementos */
-}
-
-
-
-.volver img {
-  width: 20px;
-  height: 20px;
-  margin-right: 15px; 
-  margin-left: 5px;
-
-}
-.volver img:hover {
-  filter: saturate(150%);
-  transition: 0.7s;
+.menu-botones {
+  left: 50%;
+  right: 60%;
 }
