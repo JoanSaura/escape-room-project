@@ -1,9 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Burned&display=swap');
+
 body {
     background-color: black;
 }
 
+.cabecera {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.cabecera img {
+  max-width: 80%;
+}
+.cabecera h3 {
+  color: aliceblue;
+  font-size: xx-large;
+  font-family: Rubik Burned, Geneva, Tahoma, sans-serif;
+}
+
 .contenedor-manual {
-    background-image: url(/img/papel-fondo.png);
+    background-image: url(/src/img/papel-fondo.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -15,6 +32,12 @@ body {
     align-items: center;
     margin-left: 15px;
     font-size: 150%;
+  }
+  .contenedor-manual p {
+    font-size: 120%;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
   .volver {

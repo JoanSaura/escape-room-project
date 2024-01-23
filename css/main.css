@@ -1,26 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Burned&display=swap');
+
 body {
   background-color: black;
 }
+
 /*Menu de inicio*/
-#menu-usuarios {
-  position: fixed;
-  top: 0;
-  right: -250px;
-  height: 100%;
-  background-color: rgba(51, 51, 51, 0.8); /* Cambiado a un color semitransparente */
-  padding: 10px;
-  transition: right 0.3s ease;
-  width: 245px; 
-  box-sizing: border-box;
-  backdrop-filter: blur(5px); /* Añadido el efecto de desenfoque */
-}
 
-
-#menu-usuarios h4 {
-  color: aliceblue;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin-bottom: 20px; 
-}
 .menu-botones {
   margin-top: 125px;
   right: 25%;
@@ -29,40 +15,112 @@ body {
   margin: 120px;
   transform: rotate(15deg); 
 }
-.boton {
+.boton-manual {
   background-color: red;
   color: aliceblue;
   border-radius: 25px;
   max-width: 30px;
   display: flex;
+  border: 2px solid white;
+  margin-left: 97%;
+  text-decoration: none;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
-}
-#user {
-  color: aliceblue;
-  margin-left: 6px;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 .boton a:hover {
     color: aqua;
     transition: 0.5;
 }
-.boton-menu, .boton-usuarios{
+.boton-menu, .gestion-usuarios{
   background-color: red;
   border-radius: 25px;
   padding: 10px;
   margin-top: 5px;
   max-width: 25%;
   border: 3px solid white;
-  cursor: [];
+  cursor: pointer;
 }
-.boton-menu:hover ,.boton-usuarios:hover {
+.boton-menu:hover, .gestion-usuarios:hover {
   background-color: bisque;
   color: red;
   transform: 1.2;
 }
+
 .menu-botones {
   left: 50%;
   right: 60%;
+} 
+/*Secion de usuarios*/
+
+#menu-usuarios {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.8); 
+  padding: 10px;
+  transition: right 0.3s ease;
+  width: 245px; 
+  box-sizing: border-box;
+  backdrop-filter: blur(15px); 
 }
+
+#menu-usuarios h4 {
+  color: aliceblue;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-bottom: 20px; 
+  font-size: 155%;
+}
+
+#menu-usuarios > .boton-usuarios {
+  background-color:crimson;
+  border-radius: 25px;
+  padding: 15px;
+  margin-top: 15px;
+  max-width: 65%;
+  text-align: center;
+  border: 3px solid white;
+  cursor: pointer;
+}
+
+.boton-usuarios:hover {
+  background-color: chartreuse;
+  color: blue;
+  transform: 1.2;
+}
+
+#user {
+  color: aliceblue;
+  margin-left: 6px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+/*Pop-ups para inicio de sesion y Creacion de usuario*/
+
+#crear-usuario {
+  margin-top: 10px;
+  background-image: url(/src/img/papel-fondo-2.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px 25px 0px 0px;
+  padding: 2px;
+  margin-left: 15%;
+  margin-right: 15%;
+  display: flex;
+}
+#crear-usuario h5 {
+  font-size: 185%;
+  text-align: center;
+  font-family: Rubik Burned;
+}
+#crear-usuario input {
+  align-items: center;
+  margin: 6px;
+  max-width: 65%;
+  padding: 1%;
+  border-radius: 25px;
+}
+

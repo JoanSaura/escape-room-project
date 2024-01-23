@@ -1,10 +1,15 @@
-const botonUsuarios = document.querySelector('.boton-usuarios');
+const botonUsuarios = document.querySelector('.gestion-usuarios');
 const menuUsuarios = document.getElementById('menu-usuarios');
+const cerrar = document.getElementById('Cerrar');
 
 botonUsuarios.addEventListener('click', function() {
-    if (parseInt(getComputedStyle(menuUsuarios).right) < 0) {
-        menuUsuarios.style.right = '0';
-    } else {
-        menuUsuarios.style.right = '-250px';
+    const menuEstaOculto = parseInt(getComputedStyle(menuUsuarios).right) < 0;
+
+    menuUsuarios.style.right = menuEstaOculto ? '0' : '-250px';
+});
+
+cerrar.addEventListener('click', function() {
+    if (window.opener) {
+        window.close();
     }
 });
