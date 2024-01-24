@@ -26,6 +26,8 @@ body {
     background-repeat: no-repeat;
     border-radius: 20px;
     border: solid 5px white;
+    margin-left: 12%;
+    margin-right: 12%;
   }
   .contenedor-manual h3 {
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

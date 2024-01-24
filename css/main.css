@@ -96,7 +96,7 @@ body {
 }
 
 /*Pop-ups para inicio de sesion y Creacion de usuario*/
-
+/*Para la creacion de usuarios*/
 #crear-usuario {
   position: absolute;
   top: 50%;
@@ -110,6 +110,7 @@ body {
   display: none;
   flex-direction: column;
   border-radius: 25px;
+  padding-bottom: 25px;
   width: 70%; 
 }
 
@@ -134,4 +135,26 @@ body {
   padding: 1%;
   border-radius: 25px;
 }
+#guardar-usuario {
+  background-color: black;
+  color: aliceblue;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding: 10px;
+  margin-top: 10px;
+}
+#guardar-usuario:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
+  transition: 1.2s;
+}
 
+/*Para el incio de sesion*/
+#iniciar-sesion-menu {
+  background-color: aliceblue;
+}
+#iniciar-sesion-menu > h5{
+  font-size: 185%;
+  text-align: center;
+  font-family: Rubik Burned;
+}
