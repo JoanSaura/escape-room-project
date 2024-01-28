@@ -97,7 +97,7 @@ body {
 
 /*Pop-ups para inicio de sesion y Creacion de usuario*/
 /*Para la creacion de usuarios*/
-#crear-usuario {
+#crear-usuario, #iniciar-sesion-menu {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -107,23 +107,24 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  display: none;
   flex-direction: column;
   border-radius: 25px;
   padding-bottom: 25px;
   width: 70%; 
+  display: none;
 }
 
-#crear-usuario > p {
+#crear-usuario > p ,#cerrar-inicio-sesion{
   text-align: center;
   margin-left: 96%;
+  transition: 1.2s;
   cursor: pointer;
 }
-#crear-usuario > p:hover {
-  background-color: red;
-  color: aliceblue;
+#crear-usuario > p:hover ,#cerrar-inicio-sesion:hover {
+  transform: scale(1.5);
+  color: blue;
 }
-#crear-usuario h5 {
+#crear-usuario h5 ,#iniciar-sesion-menu > h5{
   font-size: 185%;
   text-align: center;
   font-family: Rubik Burned;
@@ -149,12 +150,3 @@ body {
   transition: 1.2s;
 }
 
-/*Para el incio de sesion*/
-#iniciar-sesion-menu {
-  background-color: aliceblue;
-}
-#iniciar-sesion-menu > h5{
-  font-size: 185%;
-  text-align: center;
-  font-family: Rubik Burned;
-}
