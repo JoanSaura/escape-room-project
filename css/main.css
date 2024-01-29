@@ -97,7 +97,7 @@ body {
 
 /*Pop-ups para inicio de sesion y Creacion de usuario*/
 /*Para la creacion de usuarios*/
-#crear-usuario, #iniciar-sesion-menu {
+#crear-usuario, #iniciar-sesion-menu,#cerrar-selector-juego {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -120,7 +120,7 @@ body {
   transition: 1.2s;
   cursor: pointer;
 }
-#crear-usuario > p:hover ,#cerrar-inicio-sesion:hover {
+#crear-usuario > p:hover ,#cerrar-inicio-sesion:hover, #cerrar-selector-juego:hover {
   transform: scale(1.5);
   color: blue;
 }
@@ -150,3 +150,56 @@ body {
   transition: 1.2s;
 }
 
+#lista-usuarios {
+  text-align: center;
+  list-style: none;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+/* Agrega esto al final de tu archivo main.css */
+
+#selector-nivel {
+  display: none;
+  margin-top: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.bloque-juego {
+  background-color: black;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bloque-juego img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#selector-nivel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+#selector-nivel img:hover {
+  opacity: 0.7;
+}
+
+#selector-juego {
+  background-color: aliceblue;
+}
+
+#selector-juego > h4 {
+  color: red;
+}
+
+/*Selector de juego*/
+
+.juego {
+  background-color: grey;
+}
