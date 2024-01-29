@@ -1,104 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/src/icons/icon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/css/main.css" />
-  <title>Escape The Room</title>
-</head>
-<body>
-  <div class="contenedor">
-    <img src="/src/img/Logotipo.png" alt="" class="logo" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/src/icons/icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Escape The Room</title>
+  </head>
+  <body>
+    <div class="contenedor">
+      <img src="/src/img/Logotipo.png" alt="" class="logo" />
 
-    <div class="menu-botones">
-      <div class="boton-menu" id="nuevo-juego">
-        <p>Nuevo juego</p>
+      <div class="menu-botones">
+        <div class="boton-menu" id="nuevo-juego">
+          <p>Nuevo juego</p>
+        </div>
+        <div class="boton-menu">
+          <p>Continuar</p>
+        </div>
+        <div class="gestion-usuarios" id="mostrar-crear-usuario">
+          <p>Gestion de usuarios</p>
+        </div>
+        <p id="user">No hay ninguna sesión activa</p>
       </div>
-      <div class="boton-menu">
-        <p>Continuar</p>
+
+      <div id="menu-usuarios">
+        <h4>Gestion de usuarios</h4>
+        <div class="boton-usuarios" id="crear-usuario-btn">
+          <p>Crear usuarios</p>
+        </div>
+
+        <div class="boton-usuarios" id="inicio-sesion-btn">
+          <p>Iniciar Sesión</p>
+        </div>
+
+        <div class="boton-usuarios">
+          <p id="cerrar-menu-usuarios">Volver atrás</p>
+        </div>
       </div>
-      <div class="gestion-usuarios" id="mostrar-crear-usuario">
-        <p>Gestion de usuarios</p>
+
+      <div class="fondo-estatica">
+        <div id="selector-juego">
+          <p id="cerrar-selector-juego">X</p>
+          <h4>Seleciona un nivel</h4>
+          <div id="casillas-juegos">
+            <div class="juego">
+              <p>Memoria 1</p>
+            </div>
+            <div class="juego">
+              <p>Memoria 2</p>
+            </div>
+            <div class="juego">
+              <p>Memoria 3</p>
+            </div>
+            <div class="juego">
+              <p>Memoria 4</p>
+            </div>
+            <div class="juego">
+              <p>Memoria 5</p>
+            </div>
+
+            <div id="contra-huida">
+              <p>Codigo para salir</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <p id="user">No hay ninguna sesión activa</p>
 
     </div>
 
-    <div id="menu-usuarios">
-      <h4>Gestion de usuarios</h4>
-      <div class="boton-usuarios" id="crear-usuario-btn">
-        <p>Crear usuarios</p>
-      </div>
-
-      <div class="boton-usuarios" id="inicio-sesion-btn">
-        <p>Iniciar Sesión</p>
-      </div>
-
-      <div class="boton-usuarios">
-        <p id="cerrar-menu-usuarios">Volver atrás</p>
-      </div>
-      
+    <div id="crear-usuario">
+      <p id="cerrar-crear-usuario">X</p>
+      <h5>Creación de usuario</h5>
+      <input type="text" id="nombre-usuario" placeholder="Nombre de usuario" />
+      <input type="password" id="contrasena-usuario" placeholder="Contraseña" />
+      <button id="guardar-usuario">Guardar Usuario</button>
     </div>
 
-
-    <div id="selector-juego">
-        <p id="cerrar-selector-juego">X</p>
-        <h4>Seleciona un nivel </h4>
-      <div id="casillas-juegos">
-          <div class="juego">
-
-            <p>Prueba 1</p>
-
-          </div>
-          <div class="juego">
-
-            <p>Prueba 2</p>
-          </div>
-          <div class="juego">
-
-            <p>Prueba 3</p>
-          </div>
-          <div class="juego">
-            
-            <p>Prueba 4</p>
-          </div>
-          <div class="juego">
-
-            <p>Prueba 5</p>
-          </div>
-      </div>
+    <div id="iniciar-sesion-menu">
+      <p id="cerrar-inicio-sesion">X</p>
+      <h5>Inicio de Sesión</h5>
+      <p>Escoge tu usuario :</p>
+      <ul id="lista-usuarios"></ul>
     </div>
-    
 
-  </div>
+    <div id="selector-nivel"></div>
 
-  <div id="crear-usuario">
-    <p id="cerrar-crear-usuario">X</p>
-    <h5>Creación de usuario</h5>
-    <input type="text" id="nombre-usuario" placeholder="Nombre de usuario">
-    <input type="password" id="contrasena-usuario" placeholder="Contraseña">
-    <button id="guardar-usuario">Guardar Usuario</button>
-  </div>
+    <div class="boton-manual">
+      <a href="manual.html" class="manual">?</a>
+    </div>
+
+    <script src="/scripts/menus.js"></script>
+  </body>
   
-
-  <div id="iniciar-sesion-menu">
-    <p id="cerrar-inicio-sesion">X</p>
-    <h5>Inicio de Sesión</h5>    
-    <p>Escoge tu usuario : </p>
-    <ul id="lista-usuarios"></ul>
-  </div>
-  
-  <div id="selector-nivel">
-
-  </div>
-
-
-
-  <div class="boton-manual">
-    <a href="manual.html" class="manual">?</a>
-  </div>
-
-  <script src="/scripts/menus.js"></script>
-</body>
 </html>

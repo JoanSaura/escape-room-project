@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Burned&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
 
 body {
   background-color: black;
@@ -94,7 +95,13 @@ body {
   margin-left: 6px;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
-
+.fondo {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  display: none;
+  background-color: RGBA(0,0,0, 0.6);
+}
 /*Pop-ups para inicio de sesion y Creacion de usuario*/
 /*Para la creacion de usuarios*/
 #crear-usuario, #iniciar-sesion-menu,#cerrar-selector-juego {
@@ -150,56 +157,56 @@ body {
   transition: 1.2s;
 }
 
+/*Para los usuarios registrados*/
 #lista-usuarios {
   text-align: center;
   list-style: none;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-
-/* Agrega esto al final de tu archivo main.css */
-
-#selector-nivel {
-  display: none;
-  margin-top: 20px;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+#iniciar-sesion-menu > p:nth-of-type(2) {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: red;
+  font-size: 20px; 
 }
 
-.bloque-juego {
-  background-color: black;
-  height: 100px;
-  position: relative;
-  overflow: hidden;
-}
 
-.bloque-juego img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-#selector-nivel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+#lista-usuarios li {
+  padding: 5px;
   cursor: pointer;
 }
 
-#selector-nivel img:hover {
-  opacity: 0.7;
-}
 
-#selector-juego {
-  background-color: aliceblue;
-}
-
-#selector-juego > h4 {
+#lista-usuarios li:hover {
   color: red;
+  transition: 0.7s;
 }
 
 /*Selector de juego*/
-
-.juego {
+#selector-juego {
+padding: 2px;
+background-color: slategrey;
+margin-left: 15%;
+margin-right: 15%;
+}
+#selector-juego h4 {
+  font-family: Sixtyfour;
+  text-align: center;
+  color: red;
+  font-size: 35px;
+}
+.juego, #contra-huida {
   background-color: grey;
+}
+.juego p ,#contra-huida{
+  font-family: Sixtyfour;
+}
+.juego p:hover {
+  color: red;
+}
+#contra-huida:hover {
+  background-color: red;
+  color: aliceblue;
 }
