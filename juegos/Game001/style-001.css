@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+
+#selector-dificultad {
+    background-color: grey;
+}
+
+#selector-dificultad .dificultad {
+    font-family: 'Single Day', sans-serif; 
+}
+
+#menu-superior {
+    background-color: gray;
+    color: aliceblue;
+    font-family: 'Single Day', sans-serif; 
+
+}
+
+#guardar-puntajes {
+    float: right;
+}

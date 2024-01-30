@@ -206,6 +206,12 @@ margin-right: 15%;
 .juego p:hover {
   color: red;
 }
+.juego a {
+  text-decoration: none;
+}
+.juego a:visited {
+  color: black;
+}
 #contra-huida:hover {
   background-color: red;
   color: aliceblue;

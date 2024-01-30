@@ -80,8 +80,36 @@ document.addEventListener("DOMContentLoaded", function () {
       const nuevoUsuario = {
         nombre: nombreUsuario,
         contraseña: contraseña,
-        puntajes: [],
-        tiempos: [],
+        Juego1 : [
+          {
+            "tiempo" : null,
+            "puntos" : null,
+          }
+        ],
+        Juego2: [
+          {
+            "tiempo" : null,
+            "puntos" : null,
+          }
+        ],
+        Juego3: [
+          {
+            "tiempo" : null,
+            "puntos" : null,
+          }
+        ],
+        Juego4 :[
+          {
+            "tiempo" : null,
+            "puntos" : null,
+          }
+        ],
+        Juego4: [
+          {
+            "tiempo" : null,
+            "puntos" : null,
+          }
+        ]
       };
       if (!nuevoUsuario.nombre || nuevoUsuario.nombre.trim() === "") {
         alert("Inserte un nombre, por favor");
