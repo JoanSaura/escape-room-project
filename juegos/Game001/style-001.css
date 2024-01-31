@@ -4,7 +4,11 @@
 body {
     margin: 0;
     padding: 0;
+    background-image: url(/src/img/Oxido.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+
 
 .fondo-selector {
     background-color: black;
@@ -54,10 +58,10 @@ body {
     display: none;
 }
 #menu-superior {
+    margin-top: 0;
     background-color: gray;
     color: aliceblue;
     font-family: 'Single Day', sans-serif; 
-
 }
 
 #guardar-puntajes {
@@ -65,18 +69,22 @@ body {
 }
 
 #tablero {
-    
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); 
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center; 
+    align-items: center; 
     gap: 10px;
-    margin: 30px auto auto auto;
+    margin: 30px auto; 
     max-width: 600px; 
 }
 
 .carta {
-    background-color: black;
-    height: 90px; 
-    width: 60px; 
+    background-size: cover;
+    background-position: center; 
+    height: 280px; 
+    width: 150px; 
+    cursor: pointer;
 }
 
 #errores {
