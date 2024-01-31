@@ -1,13 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.fondo-selector {
+    background-color: black;
+    width: 100%;
+    height: 100vh; 
+    justify-content: center;
+    align-items: center;
+}
+.fondo-selector h4 {
+    color: white;
+    font-size: 40px;
+    font-family: Sixtyfour;
+}
+.dificultad {
+    width: 50%;
+    height: 45px;
+    border-radius: 24px;
+    font-size: 40px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+#Principiante {
+    background-color: cadetblue;
+  }
+  
+  #Avanzado {
+    background-color: brown;
+  }
+  
+  #Locura {
+    background-image: url(/src/img/Estatica.jpg);
+    color: red;
+  }
 
 #selector-dificultad {
     background-color: grey;
+    padding: 20px; 
+    text-align: center;
 }
 
 #selector-dificultad .dificultad {
-    font-family: 'Single Day', sans-serif; 
+    font-family: 'Single Day', sans-serif;
+    margin: 10px; 
 }
-
+#interfaz-juego {
+    display: none;
+}
 #menu-superior {
     background-color: gray;
     color: aliceblue;
@@ -17,4 +62,36 @@
 
 #guardar-puntajes {
     float: right;
+}
+
+#tablero {
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); 
+    gap: 10px;
+    margin: 30px auto auto auto;
+    max-width: 600px; 
+}
+
+.carta {
+    background-color: black;
+    height: 90px; 
+    width: 60px; 
+}
+
+#errores {
+    background-color: gray;
+    text-align: center; 
+    padding: 10px; 
+}
+
+.error {
+    background-color: rgb(73, 73, 73);
+    width: 20px;
+    height: 20px;
+    margin: 5px; 
+}
+
+.erroneo {
+    background-color: red;
 }
