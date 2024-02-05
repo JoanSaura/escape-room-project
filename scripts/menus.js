@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   //Elementos del menu principal
+  const selectorJuego = document.getElementById('selector-juego');
   const cerrarSelectorJuego = document.getElementById('cerrar-selector-juego');
   const nuevoJuegoBtn = document.getElementById('nuevo-juego');
   const botonUsuarios = document.querySelector(".gestion-usuarios");
@@ -144,6 +145,9 @@ BtninicioSesion.addEventListener("click", function () {
       cerrarPopup();
       // Muestra que usuario esta dado de alta ya en el menu
       usuarioRegistradoText.innerText = "Hola " +usuario.nombre;
+      // Después de guardar el nuevo usuario
+localStorage.setItem("usuarioActual", nuevoUsuario.nombre);
+
     });
     // Agregar el elemento de la lista al elemento ul
     listaUsuarios.appendChild(listItem);
@@ -159,7 +163,7 @@ BtninicioSesion.addEventListener("click", function () {
     if (usuarioRegistradoText.innerText === "No hay ninguna sesión activa") {
       alert("No se puede jugar sin ningún usuario elegido");
     } else {
-
+       mostrarPopup(selectorJuego);
     }
   });
 });

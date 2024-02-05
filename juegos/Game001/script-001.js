@@ -1,4 +1,5 @@
-  //Capturamos las dificultades
+document.addEventListener("DOMContentLoaded", function () {
+    //Capturamos los elementos del HTML
   const DificultadFacil = document.getElementById('Principiante');
   const DificultadMedia = document.getElementById('Avanzado');
   const DificultadDificil = document.getElementById('Locura');
@@ -7,12 +8,24 @@
   const InterfazJuego = document.getElementById('interfaz-juego');
   const PuntosUser = document.getElementById('puntos-usuario');
   const fondoSelector = document.querySelector('.fondo-selector'); 
-
-  //Variables para el cronometro
+  const tablero = document.getElementById('tablero');
+  const erroresContainer = document.getElementById('errores');
+    //Variables para el cronometro
   let tiempoTranscurrido = 0;
   let intervalo;
   let errores;
   let puntos;
+
+
+  let PrimeraCarta = null;
+  let SegundaCarta = null;
+
+  // Verificar si hay un nombre de usuario almacenado
+  if (nombreUsuarioAlmacenado) {
+    // Asignar el nombre de usuario a donde sea necesario en tu HTML
+    const nombreUsuarioElement = document.getElementById("user");
+    nombreUsuarioElement.textContent = "Hola " + nombreUsuarioAlmacenado;
+  }
   // Función para mostrar el interfaz de juego
   function mostrarInterfazJuego() {
     InterfazJuego.style.display = 'block'; 
@@ -95,13 +108,8 @@ function agregarEventosCartas() {
 
 // Función para generar cartas y errores según la dificultad
 function generarCartasYErrores(numCartas, numErrores) {
-  const tablero = document.getElementById('tablero');
-  const erroresContainer = document.getElementById('errores');
-
   // Limpiar contenido actual
   tablero.innerHTML = '';
-  erroresContainer.innerHTML = '';
-
   // Generar pares de imágenes aleatorias
   const paresImagenes = generarParesImagenes(numCartas / 2);
 
@@ -148,3 +156,4 @@ function generarCartasYErrores(numCartas, numErrores) {
     iniciarCronometro();
     generarCartasYErrores(20, 3);
   });
+});
