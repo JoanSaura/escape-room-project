@@ -10,22 +10,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const fondoSelector = document.querySelector('.fondo-selector'); 
   const tablero = document.getElementById('tablero');
   const erroresContainer = document.getElementById('errores');
+  const menuGameOver = document.getElementById('juego-acabado');
     //Variables para el cronometro
   let tiempoTranscurrido = 0;
   let intervalo;
-  let errores;
   let puntos;
-
-
-  let PrimeraCarta = null;
-  let SegundaCarta = null;
+  //Para implementar la logica del juego
+  let cartasSeleccionadas = [];
+  let cantidadErrores = 0;
+  
 
   // Verificar si hay un nombre de usuario almacenado
-  if (nombreUsuarioAlmacenado) {
-    // Asignar el nombre de usuario a donde sea necesario en tu HTML
-    const nombreUsuarioElement = document.getElementById("user");
-    nombreUsuarioElement.textContent = "Hola " + nombreUsuarioAlmacenado;
-  }
+
   // Función para mostrar el interfaz de juego
   function mostrarInterfazJuego() {
     InterfazJuego.style.display = 'block'; 
@@ -82,21 +78,22 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
  // Función para agregar eventos de clic a las cartas y revelar las imágenes
-function agregarEventosCartas() {
+ function agregarEventosCartas() {
   const cartas = document.querySelectorAll('.carta');
   cartas.forEach(carta => {
     carta.addEventListener('click', function() {
-      this.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
+      if (cartasSeleccionadas.length < 2) {
+        cartasSeleccionadas.push(this);
+        this.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
+
+        if (cartasSeleccionadas.length === 2) {
+          setTimeout(verificarCartasSeleccionadas, 1000); 
+        }
+      }
+
       this.removeEventListener('click', arguments.callee);
-      if(this.style.backgroundImage == 2 ) {
-          puntos =+10;
-          PuntosUser.innerHTML = `${puntos}`;
-      }
-      else {
-        errores++;
-        
-      }
     });
+
     // Agregar evento para ocultar la imagen al hacer clic fuera de la carta
     carta.addEventListener('mouseleave', function() {
       if (this.style.backgroundImage.includes('Reverso.png')) {
@@ -105,6 +102,41 @@ function agregarEventosCartas() {
     });
   });
 }
+
+function verificarCartasSeleccionadas() {
+  const [carta1, carta2] = cartasSeleccionadas;
+  if (carta1.dataset.imagen !== carta2.dataset.imagen) {
+    // Si las cartas no son iguales, aumenta la cantidad de errores y agrega la clase 'erroneo'
+    cantidadErrores++;
+    erroresContainer.children[cantidadErrores - 1].classList.add('erroneo');
+  }
+else {
+  carta1.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
+  carta2.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
+}
+
+  // Oculta las imágenes de las cartas después de verificar
+  cartasSeleccionadas.forEach(carta => {
+    carta.style.backgroundImage = `url('img/Reverso.png')`;
+    carta.addEventListener('click', function() {
+      if (cartasSeleccionadas.length < 2) {
+        cartasSeleccionadas.push(this);
+        this.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
+
+        if (cartasSeleccionadas.length === 2) {
+          setTimeout(verificarCartasSeleccionadas, 1000);
+        }
+      }
+
+      this.removeEventListener('click', arguments.callee);
+    });
+  });
+
+  // Limpiar el array de cartas seleccionadas
+  cartasSeleccionadas = [];
+}
+
+
 
 // Función para generar cartas y errores según la dificultad
 function generarCartasYErrores(numCartas, numErrores) {
@@ -132,6 +164,13 @@ function generarCartasYErrores(numCartas, numErrores) {
   // Agregar eventos de clic a las cartas
   agregarEventosCartas();
 }
+function LanzarGameOver(erroresTotales) {
+  if (cantidadErrores == erroresTotales) {
+    InterfazJuego.style.display = 'none';
+    menuGameOver.style.display= 'block';
+  }
+}
+
   // Eventos click con generación de cartas y errores según la dificultad
   DificultadFacil.addEventListener('click', function() {
     ocultarPanelDificultad();
@@ -139,6 +178,7 @@ function generarCartasYErrores(numCartas, numErrores) {
     reiniciarCronometro();
     iniciarCronometro();
     generarCartasYErrores(10, 5);
+    LanzarGameOver(5);
   });
 
   DificultadMedia.addEventListener('click', function() {
@@ -147,6 +187,7 @@ function generarCartasYErrores(numCartas, numErrores) {
     reiniciarCronometro();
     iniciarCronometro();
     generarCartasYErrores(16, 4);
+    LanzarGameOver(4);
   });
 
   DificultadDificil.addEventListener('click', function() {
@@ -155,5 +196,6 @@ function generarCartasYErrores(numCartas, numErrores) {
     reiniciarCronometro();
     iniciarCronometro();
     generarCartasYErrores(20, 3);
+    LanzarGameOver(3);
   });
 });

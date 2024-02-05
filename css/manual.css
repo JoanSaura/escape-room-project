@@ -28,6 +28,13 @@ body {
     border: solid 5px white;
     margin-left: 12%;
     margin-right: 12%;
+    padding: 15px;
+  }
+  .contenedor-manual h2 {
+    color: red;
+    font-size: 45px;
+    margin-left: 15px;
+    font-family: Rubik Burned, Geneva, Tahoma, sans-serif;
   }
   .contenedor-manual h3 {
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
@@ -65,3 +72,19 @@ body {
     filter: saturate(150%);
     transition: 0.7s;
   }
+  .seccion-juego {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .seccion-juego img {
+    width: 280px;
+    margin-left: 15px;
+  }
+
+  .seccion-juego p {
+    flex: 1; 
+    margin-right: 20px; 
+  }
+  
