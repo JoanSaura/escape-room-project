@@ -110,11 +110,6 @@ function verificarCartasSeleccionadas() {
     cantidadErrores++;
     erroresContainer.children[cantidadErrores - 1].classList.add('erroneo');
   }
-else {
-  carta1.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
-  carta2.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
-}
-
   // Oculta las imágenes de las cartas después de verificar
   cartasSeleccionadas.forEach(carta => {
     carta.style.backgroundImage = `url('img/Reverso.png')`;
@@ -165,7 +160,7 @@ function generarCartasYErrores(numCartas, numErrores) {
   agregarEventosCartas();
 }
 function LanzarGameOver(erroresTotales) {
-  if (cantidadErrores == erroresTotales) {
+  if (cantidadErrores >= erroresTotales) {
     InterfazJuego.style.display = 'none';
     menuGameOver.style.display= 'block';
   }
