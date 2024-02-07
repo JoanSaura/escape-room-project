@@ -78,25 +78,24 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
  // Función para agregar eventos de clic a las cartas y revelar las imágenes
- function agregarEventosCartas() {
+function agregarEventosCartas() {
   const cartas = document.querySelectorAll('.carta');
   cartas.forEach(carta => {
     carta.addEventListener('click', function() {
-      if (cartasSeleccionadas.length < 2) {
+      // Verificar si la carta ya ha sido acertada
+      if (!this.classList.contains('acertada') && cartasSeleccionadas.length < 2) {
         cartasSeleccionadas.push(this);
         this.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
 
         if (cartasSeleccionadas.length === 2) {
-          setTimeout(verificarCartasSeleccionadas, 1000); 
+          setTimeout(verificarCartasSeleccionadas, 1000);
         }
       }
-
-      this.removeEventListener('click', arguments.callee);
     });
 
     // Agregar evento para ocultar la imagen al hacer clic fuera de la carta
     carta.addEventListener('mouseleave', function() {
-      if (this.style.backgroundImage.includes('Reverso.png')) {
+      if (this.style.backgroundImage.includes('Reverso.png') && !this.classList.contains('acertada')) {
         this.style.backgroundImage = `url('img/Reverso.png')`;
       }
     });
@@ -105,31 +104,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function verificarCartasSeleccionadas() {
   const [carta1, carta2] = cartasSeleccionadas;
-  if (carta1.dataset.imagen !== carta2.dataset.imagen) {
-    // Si las cartas no son iguales, aumenta la cantidad de errores y agrega la clase 'erroneo'
+  if (carta1.dataset.imagen == carta2.dataset.imagen) {
+    // Si las cartas son iguales, agregar la clase 'acertada'
+    cartasSeleccionadas.forEach(carta => {
+      carta.classList.add('acertada');
+      carta
+    });
+  } else {
+    // Si las cartas no son iguales, aumentar la cantidad de errores y agregar la clase 'erroneo'
     cantidadErrores++;
     erroresContainer.children[cantidadErrores - 1].classList.add('erroneo');
   }
-  // Oculta las imágenes de las cartas después de verificar
+
+  // Ocultar las imágenes de las cartas después de verificar
   cartasSeleccionadas.forEach(carta => {
     carta.style.backgroundImage = `url('img/Reverso.png')`;
-    carta.addEventListener('click', function() {
-      if (cartasSeleccionadas.length < 2) {
-        cartasSeleccionadas.push(this);
-        this.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
-
-        if (cartasSeleccionadas.length === 2) {
-          setTimeout(verificarCartasSeleccionadas, 1000);
-        }
-      }
-
-      this.removeEventListener('click', arguments.callee);
-    });
   });
 
   // Limpiar el array de cartas seleccionadas
   cartasSeleccionadas = [];
 }
+
 
 
 
