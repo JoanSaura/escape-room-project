@@ -125,6 +125,31 @@ body {
     background-color: red;
   }
 
- #juego-acabado {
+ #juego-perdido {
+    display: none;
+    background-color: aliceblue;
+    color: red;
+    margin-left: 11%;
+    margin-right: 11%;
+    margin-top: 25%;
+    padding: 24px;
+    border-radius: 15px;
+ }
+ #juego-perdido > div {
+    display: inline-block;
+    background-color: rgb(39, 38, 36);
+    color: aliceblue;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 15px;
+    max-width: 175px;
+    text-align: center;
+  }
+  #juego-perdido > div:hover {
+    background-color: blue;
+    color: aliceblue;
+  } 
+  
+ #juego-ganado {
     display: none;
  }

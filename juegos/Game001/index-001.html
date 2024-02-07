@@ -13,7 +13,6 @@
     </title>
   </head>
   <body>
-
     <div class="fondo-selector">
       <div id="selector-dificultad">
         <h4>Escoge la dificultad</h4>
@@ -25,8 +24,17 @@
       </div>
     </div>
 
-    <div id="juego-acabado">
+    <div id="juego-perdido">
       <h3>Has fallado</h3>
+      <h4>¿ Que te gustaria hacer ahora ?</h4>
+      <div id="guardar-salir">Guardar y Salir</div>
+      <div id="volver-ha-intentarlo">Volver ha intentarlo</div>
+    </div>
+
+    <div id="juego-ganado">
+      <h3>Has pasado la prueba</h3>
+      <h4>¿ Que te gustaria hacer ahora ?</h4>
+      <div><a href="/juegos/Game002/index-002.html">Siguente Juego</a></div>
       <div id="guardar-salir">Guardar y Salir</div>
       <div id="volver-ha-intentarlo">Volver ha intentarlo</div>
     </div>
@@ -40,14 +48,11 @@
         <button id="guardar-puntaje">Guardar puntaje actual</button>
       </div>
 
-      <div id="errores">
-      </div>
-      
+      <div id="errores"></div>
+
       <div id="tablero">
         <div class="carta" />
       </div>
-
-  
     </div>
 
     <script src="script-001.js"></script>

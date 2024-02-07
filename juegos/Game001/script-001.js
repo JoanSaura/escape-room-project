@@ -10,11 +10,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const fondoSelector = document.querySelector('.fondo-selector'); 
   const tablero = document.getElementById('tablero');
   const erroresContainer = document.getElementById('errores');
-  const menuGameOver = document.getElementById('juego-acabado');
-    //Variables para el cronometro
+  const menuGameOver = document.getElementById('juego-perdido');
+  const menuVictoria = document.getElementById('juego-ganado');
+  const GuardarYSalir = document.getElementById('guardar-salir');
+  const VolverHaIntentarlo = document.getElementById('volver-ha-intentarlo');   
+  //Variables para el cronometro
   let tiempoTranscurrido = 0;
   let intervalo;
-  let puntos;
+  let dificultadElegida = "";
+  let puntos = 0;
   //Para implementar la logica del juego
   let cartasSeleccionadas = [];
   let cantidadErrores = 0;
@@ -104,18 +108,35 @@ function agregarEventosCartas() {
 
 function verificarCartasSeleccionadas() {
   const [carta1, carta2] = cartasSeleccionadas;
+  const todasAcertadas = document.querySelectorAll('.carta:not(.acertada)').length === 0;
+
   if (carta1.dataset.imagen == carta2.dataset.imagen) {
     // Si las cartas son iguales, agregar la clase 'acertada'
     cartasSeleccionadas.forEach(carta => {
       carta.classList.add('acertada');
-      carta
+      puntos =  puntos + 10;
+      PuntosUser.innerHTML = `${puntos}`;
     });
   } else {
     // Si las cartas no son iguales, aumentar la cantidad de errores y agregar la clase 'erroneo'
     cantidadErrores++;
     erroresContainer.children[cantidadErrores - 1].classList.add('erroneo');
   }
+      if (todasAcertadas) {
+        LanzarWin();     
+        return;  
+    }
 
+    if (dificultadElegida == "facil" && cantidadErrores == 5) {
+      LanzarGameOver();
+    }
+    else if (dificultadElegida == "normal" && cantidadErrores == 4) {
+      LanzarGameOver();
+    }
+    else if (dificultadElegida == "dificil" && cantidadErrores == 3) {
+      LanzarGameOver();
+    }
+    
   // Ocultar las imágenes de las cartas después de verificar
   cartasSeleccionadas.forEach(carta => {
     carta.style.backgroundImage = `url('img/Reverso.png')`;
@@ -154,38 +175,53 @@ function generarCartasYErrores(numCartas, numErrores) {
   // Agregar eventos de clic a las cartas
   agregarEventosCartas();
 }
-function LanzarGameOver(erroresTotales) {
-  if (cantidadErrores >= erroresTotales) {
-    InterfazJuego.style.display = 'none';
-    menuGameOver.style.display= 'block';
-  }
+
+//Mostrar pantalla de derrota
+function LanzarGameOver() {
+  detenerCronometro();
+  InterfazJuego.style.display = 'none';
+  menuGameOver.style.display= 'block';
 }
+//Mostrar pantalla de victoria
+function LanzarWin() {
+  detenerCronometro();
+  InterfazJuego.style.display = 'none';
+  menuVictoria.style.display = 'block'
+}
+
+  GuardarYSalir.addEventListener('click',function() {
+
+  });
+
+  VolverHaIntentarlo.addEventListener('click' ,function() {
+    location.reload();
+  });
 
   // Eventos click con generación de cartas y errores según la dificultad
   DificultadFacil.addEventListener('click', function() {
+    dificultadElegida = "facil";
     ocultarPanelDificultad();
     mostrarInterfazJuego();
     reiniciarCronometro();
     iniciarCronometro();
     generarCartasYErrores(10, 5);
-    LanzarGameOver(5);
   });
 
   DificultadMedia.addEventListener('click', function() {
+    dificultadElegida = "normal";
     ocultarPanelDificultad();
     mostrarInterfazJuego();
     reiniciarCronometro();
     iniciarCronometro();
     generarCartasYErrores(16, 4);
-    LanzarGameOver(4);
   });
 
   DificultadDificil.addEventListener('click', function() {
+    dificultadElegida = "dificil";
     mostrarInterfazJuego();
     ocultarPanelDificultad();
     reiniciarCronometro();
     iniciarCronometro();
     generarCartasYErrores(20, 3);
-    LanzarGameOver(3);
   });
 });
