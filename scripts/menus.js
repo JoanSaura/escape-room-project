@@ -85,30 +85,28 @@ document.addEventListener("DOMContentLoaded", function () {
           {
             "tiempo" : null,
             "puntos" : null,
+            "superado" : false
           }
         ],
         Juego2: [
           {
             "tiempo" : null,
             "puntos" : null,
+            "superado" : false
           }
         ],
         Juego3: [
           {
             "tiempo" : null,
             "puntos" : null,
+            "superado" : false
           }
         ],
         Juego4 :[
           {
             "tiempo" : null,
             "puntos" : null,
-          }
-        ],
-        Juego4: [
-          {
-            "tiempo" : null,
-            "puntos" : null,
+            "superado" : false
           }
         ]
       };

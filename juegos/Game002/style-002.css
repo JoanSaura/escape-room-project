@@ -1,76 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap');
 
 body {
-    margin: 0;
-    padding: 0;
-    background-image: url(/src/img/Oxido.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-
-.fondo-selector {
-    background-color: black;
-    width: 100%;
-    height: 100vh; 
-    justify-content: center;
-    align-items: center;
-}
-.fondo-selector h4 {
-    color: white;
-    font-size: 40px;
-    font-family: Sixtyfour;
-}
-.dificultad {
-    width: 50%;
-    height: 45px;
-    border-radius: 24px;
-    font-size: 40px;
-    margin: 15px;
-    cursor: pointer;
-}
-
-#Principiante {
-    background-color: cadetblue;
+  background-color: black;
   }
-  
-  #Avanzado {
-    background-color: brown;
-  }
-  
-  #Locura {
-    background-image: url(/src/img/Estatica.jpg);
-    color: red;
-  }
-
-#selector-dificultad {
-    background-color: grey;
-    padding: 20px; 
+.tecla {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border: 1px solid #999;
     text-align: center;
-}
+    line-height: 50px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  
+  .tecla:hover {
+    background-color: #ddd;
+  }
+  
+  #teclado {
+    text-align: center;
+    margin-top: 20px;
+  }
 
-#grid-dificultad {
+  #palabra-adivinar {
+    background-color: #999;
+    border: 5px solid rgb(110, 97, 24);
+    border-radius: 15px;
     display: flex;
     align-items: center;
-}
+  }
+  #palabra-adivinar > .letra {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 25px;
+    font-family: Protest Revolution;
+    cursor: pointer;
+  }
 
-#selector-dificultad .dificultad {
-    font-family: 'Single Day', sans-serif;
-    margin: 10px; 
-}
-#interfaz-juego {
-    display: none;
-}
-#menu-superior {
-    margin-top: 0;
-    background-color: gray;
-    display: flex;
-    align-items: center; 
-    justify-content: space-between;
-}
-#menu-superior > p {
-    color: aliceblue;
-    font-size: 25px;
-    font-family: 'Single Day', sans-serif;
-}
+  .correcta {
+    background-color: green;
+    cursor: none;
+  }
+  .erroneo {
+    background-color: red;
+    cursor: none;
+  }
+  

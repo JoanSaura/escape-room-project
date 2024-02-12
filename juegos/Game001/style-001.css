@@ -2,84 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
 
 body {
-    margin: 0;
-    padding: 0;
     background-image: url(/src/img/Oxido.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
 }
-
-
-.fondo-selector {
-    background-color: black;
-    width: 100%;
-    height: 100vh; 
-    justify-content: center;
-    align-items: center;
-}
-.fondo-selector h4 {
-    color: white;
-    font-size: 40px;
-    font-family: Sixtyfour;
-}
-.dificultad {
-    width: 50%;
-    height: 45px;
-    border-radius: 24px;
-    font-size: 40px;
-    margin: 15px;
-    cursor: pointer;
-}
-
-#Principiante {
-    background-color: cadetblue;
-  }
-  
-  #Avanzado {
-    background-color: brown;
-  }
-  
-  #Locura {
-    background-image: url(/src/img/Estatica.jpg);
-    color: red;
-  }
-
-#selector-dificultad {
-    background-color: grey;
-    padding: 20px; 
-    text-align: center;
-}
-
-#grid-dificultad {
-    display: flex;
-    align-items: center;
-}
-
-#selector-dificultad .dificultad {
-    font-family: 'Single Day', sans-serif;
-    margin: 10px; 
-}
-#interfaz-juego {
-    display: none;
-}
-#menu-superior {
-    margin-top: 0;
-    background-color: gray;
-    display: flex;
-    align-items: center; 
-    justify-content: space-between;
-}
-#menu-superior > p {
-    color: aliceblue;
-    font-size: 25px;
-    font-family: 'Single Day', sans-serif;
-}
-
-#guardar-puntaje {
-    float: right;
-    margin-right: 10px;
-}
-
 
 #tablero {
     display: grid;
@@ -124,32 +48,3 @@ body {
   .erroneo {
     background-color: red;
   }
-
- #juego-perdido {
-    display: none;
-    background-color: aliceblue;
-    color: red;
-    margin-left: 11%;
-    margin-right: 11%;
-    margin-top: 25%;
-    padding: 24px;
-    border-radius: 15px;
- }
- #juego-perdido > div {
-    display: inline-block;
-    background-color: rgb(39, 38, 36);
-    color: aliceblue;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 15px;
-    max-width: 175px;
-    text-align: center;
-  }
-  #juego-perdido > div:hover {
-    background-color: blue;
-    color: aliceblue;
-  } 
-  
- #juego-ganado {
-    display: none;
- }
