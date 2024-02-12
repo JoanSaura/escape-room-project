@@ -24,6 +24,7 @@ body {
   }
   
   #teclado {
+    margin: 40px;
     text-align: center;
     margin-top: 20px;
   }
@@ -34,15 +35,27 @@ body {
     border-radius: 15px;
     display: flex;
     align-items: center;
+    justify-content: center;  
   }
+  
   #palabra-adivinar > .letra {
     background-color: black;
     color: white;
     padding: 10px;
     margin: 10px;
-    border-radius: 25px;
+    display: inline-block;
     font-family: Protest Revolution;
-    cursor: pointer;
+  }
+
+  #contenedor-errores {
+    background-color: rgb(164, 146, 146);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 165px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .correcta {

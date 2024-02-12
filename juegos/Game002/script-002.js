@@ -6,8 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const cronometro = document.getElementById("cronometro");
   const InterfazJuego = document.getElementById("interfaz-juego");
   const PuntosUser = document.getElementById("puntos-usuario");
-  const fondoSelector = document.querySelector(".fondo-selector");
+  const fondoSelector = document.querySelector(".fondo-selector"); 
   const palabraAdivinar = document.getElementById("palabra-adivinar");
+  const erroresContainer = document.getElementById("contenedor-errores");
+  const teclasJuego = document.querySelectorAll('.tecla');
 
   let tiempoTranscurrido = 0;
   let intervalo;
@@ -40,8 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "Pteronofobia",
     "Consecotaleofobia",
   ];
-
-  document.addEventListener('keydown', manejarTeclado);
 
 
   // Función para mostrar el interfaz de juego
@@ -106,45 +106,61 @@ document.addEventListener("DOMContentLoaded", function () {
   function generarLetrasPalabra(palabra) {
     palabraSeleccionada = palabra;
     console.log(palabra);
-     palabraAdivinar.innerHTML = ""; // Limpiamos el contenedor antes de agregar nuevas letras
+     palabraAdivinar.innerHTML = ""; 
     for (let i = 0; i < palabra.length; i++) {
       const divLetra = document.createElement("div");
-      if (i < palabra.length - 5) { // Mantener las últimas cuatro letras ocultas
-        divLetra.textContent = '*'; // Ocultar la letra
+      if (i < palabra.length - 5) { 
+        divLetra.textContent = '*'; 
       } else {
-        divLetra.textContent = palabra[i]; // Mostrar la letra
+        divLetra.textContent = palabra[i]; 
       }
       divLetra.classList.add("letra");
       palabraAdivinar.appendChild(divLetra);
     }
   }
 
-  // Función para manejar el evento de teclado
-  function manejarTeclado(event) {
-    const letraPresionada = event.key.toUpperCase(); 
-    const letrasPalabra = palabraSeleccionada.toUpperCase().split('');
-    const divsLetras = palabraAdivinar.querySelectorAll('.letra');
-    let letraCorrecta = false;
-
-    letrasPalabra.forEach((letra, index) => {
-      if (letra === letraPresionada) {
-        letraCorrecta = true;
-        divsLetras[index].textContent = letra; 
-        divsLetras[index].classList.add('correcta');
-      }
-    });
-
-    if (!letraCorrecta) {
-      palabraAdivinar.classList.add('erroneo');
+  function comprobarLetra(letra, teclaClicada) {
+    letra = letra.toLowerCase();
+    if (palabraSeleccionada.includes(letra)) {
+      // La letra es correcta
+      palabraAdivinar.querySelectorAll('.letra').forEach((divLetra, index) => {
+        if (palabraSeleccionada[index] === letra) {
+          divLetra.textContent = letra;
+          puntos += 10;
+          PuntosUser.innerText = puntos;
+        }
+      });
+      teclaClicada.classList.add("correcta");
+    } else {
+      teclaClicada.classList.add("erroneo");
+      
     }
   }
+  
+  // Agrega un evento de clic para cada tecla del teclado
+  teclasJuego.forEach(tecla => {
+    tecla.addEventListener("click", function () {
+      comprobarLetra(tecla.textContent, tecla);
+    });
+  });
+  
 
+  //Crear el numero de errores maximo
+  function generarErrores(MaxErrores) {
+    for(let i = 0; i<MaxErrores; i++) {
+      const generadorError = document.createElement("div");
+      generadorError.className = 'error';
+      erroresContainer.appendChild(generadorError);
+    }
+  }
+  
   // Eventos click con generación de cartas y errores según la dificultad
   DificultadFacil.addEventListener("click", function () {
     dificultadElegida = "facil";
     ocultarPanelDificultad();
     reiniciarCronometro();
     iniciarCronometro();
+    generarErrores(5);
     const palabra = seleccionarPalabra(dificultadElegida);
     generarLetrasPalabra(palabra);
   });
@@ -154,6 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ocultarPanelDificultad();
     reiniciarCronometro();
     iniciarCronometro();
+    generarErrores(4);
     const palabra = seleccionarPalabra(dificultadElegida);
     generarLetrasPalabra(palabra);
   });
@@ -163,6 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ocultarPanelDificultad();
     reiniciarCronometro();
     iniciarCronometro();
+    generarErrores(3);
     const palabra = seleccionarPalabra(dificultadElegida);
     generarLetrasPalabra(palabra);
   });
