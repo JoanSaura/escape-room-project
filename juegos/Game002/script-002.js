@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const palabraAdivinar = document.getElementById("palabra-adivinar");
   const erroresContainer = document.getElementById("contenedor-errores");
   const teclasJuego = document.querySelectorAll('.tecla');
+  const letras = palabraAdivinar.querySelectorAll('.letra');
   const juegoGanado = document.getElementById('juego-ganado');
   const juegoPerdido = document.getElementById('juego-perdido');
   const VolverHaIntentarlo = document.getElementById('volver-ha-intentarlo');
@@ -24,28 +25,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Palabras para adivinar en base a la dificultad
   const fobiasFacil = [
-    "Aracnofobia",
-    "Agorafobia",
-    "Acrofobia",
-    "Claustrofobia",
-    "Socialfobia",
-    "Aerofobia",
+    "aracnofobia",
+    "agorafobia",
+    "acrofobia",
+    "claustrofobia",
+    "socialfobia",
+    "aerofobia",
   ];
   const fobiasMedio = [
-    "Nomofobia",
-    "Coulrofobia",
-    "Dentofobia",
-    "Enoclofobia",
-    "Ablutofobia",
-    "Somnifobia",
+    "nomofobia",
+    "coulrofobia",
+    "dentofobia",
+    "enoclofobia",
+    "ablutofobia",
+    "somnifobia",
   ];
   const fobiasDificil = [
-    "Xantofobia",
-    "Pogonofobia",
-    "Sesquipedaliofobia",
-    "Arachibutyrofobia",
-    "Pteronofobia",
-    "Consecotaleofobia",
+    "xantofobia",
+    "pogonofobia",
+    "sesquipedaliofobia",
+    "arachibutyrofobia",
+    "pteronofobia",
+    "consecotaleofobia",
   ];
 
 
@@ -136,6 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
       teclaClicada.classList.add("correcta");
+      if (palabraAdivinar.textContent === palabraSeleccionada.toLowerCase()) {
+        LanzarWin();
+      }
     } else {
       teclaClicada.classList.add("erroneo");
       cantidadErrores++;
@@ -172,6 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
       InterfazJuego.style.display = "none";
       juegoPerdido.style.display = "block";
     }
+  
+    
 
   //Mostrar pantalla de victoria
   function LanzarWin() {
@@ -214,4 +220,5 @@ document.addEventListener("DOMContentLoaded", function () {
     const palabra = seleccionarPalabra(dificultadElegida);
     generarLetrasPalabra(palabra);
   });
+
 });
