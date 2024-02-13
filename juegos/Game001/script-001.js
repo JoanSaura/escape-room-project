@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       // Si las cartas no son iguales, aumentar la cantidad de errores y agregar la clase 'erroneo'
       cantidadErrores++;
-      erroresContainer.children[cantidadErrores - 1].classList.add("erroneo");
+      erroresContainer.children[cantidadErrores - 1].classList.add("errado");
     }
     //Condicionales para mostrar el menu de victoria
     if ((dificultadElegida == "facil" && puntos == 100) || 
@@ -193,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   GuardarYSalir.addEventListener("click", function () {});
 
+  //Recargue la pagina para volver a interntarlo 
   VolverHaIntentarlo.addEventListener("click", function () {
     location.reload();
   });

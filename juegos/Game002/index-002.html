@@ -1,96 +1,94 @@
-  <!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="icon" href="/src/icons/icon.ico" type="image/x-icon" />
-      <link rel="stylesheet" href="style-002.css">
-      <link rel="stylesheet" href="/juegos/common-src/common.css">
-      <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/src/icons/icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style-002.css" />
+    <link rel="stylesheet" href="/juegos/common-src/common.css" />
+    <title>
+      01000101 01110011 01110100 01110101 01100100 01101001 01101111 00100000
+      01100100 01100101 00100000 01100110 01101111 01100010 01101001 01100001
+      01110011
+    </title>
   </head>
   <body>
+    <div class="fondo-selector">
+      <div id="selector-dificultad">
+        <h4>Escoge la dificultad</h4>
+        <div id="grid-dificultad">
+          <div class="dificultad" id="Principiante">Principiante</div>
+          <div class="dificultad" id="Avanzado">Avanzado</div>
+          <div class="dificultad" id="Locura">Locura</div>
+        </div>
+      </div>
+    </div>
 
-      <div class="fondo-selector">
-          <div id="selector-dificultad">
-            <h4>Escoge la dificultad</h4>
-            <div id="grid-dificultad">
-              <div class="dificultad" id="Principiante">Principiante</div>
-              <div class="dificultad" id="Avanzado">Avanzado</div>
-              <div class="dificultad" id="Locura">Locura</div>
-            </div>
-          </div>
+    <div id="juego-perdido">
+      <h3>Has fallado</h3>
+      <h4>¿ Que te gustaria hacer ahora ?</h4>
+      <div id="guardar-salir">Guardar y Salir</div>
+      <div id="volver-ha-intentarlo">Volver ha intentarlo</div>
+    </div>
+
+    <div id="juego-ganado">
+      <h3>Has pasado la prueba</h3>
+      <h4>¿ Que te gustaria hacer ahora ?</h4>
+      <div><a href="/juegos/Game002/index-003.html">Siguente Juego</a></div>
+      <div id="guardar-salir">Guardar y Salir</div>
+      <div id="volver-ha-intentarlo">Volver ha intentarlo</div>
+    </div>
+
+    <div id="interfaz-juego">
+      <div id="menu-superior">
+        <p id="user"></p>
+        <p id="cronometro"></p>
+        <p id="user"></p>
+        <p id="puntos-usuario">0</p>
+        <button id="guardar-puntaje">Guardar puntaje actual</button>
+      </div>
+
+      <div id="juego">
+        <div id="dibujo">
+          <img src="" alt="" />
         </div>
 
-        <div id="juego-perdido">
-          <h3>Has fallado</h3>
-          <h4>¿ Que te gustaria hacer ahora ?</h4>
-          <div id="guardar-salir">Guardar y Salir</div>
-          <div id="volver-ha-intentarlo">Volver ha intentarlo</div>
+        <div id="palabra-adivinar">
+          <p class="letra" />
         </div>
 
-        <div id="juego-ganado">
-          <h3>Has pasado la prueba</h3>
-          <h4>¿ Que te gustaria hacer ahora ?</h4>
-          <div><a href="/juegos/Game002/index-002.html">Siguente Juego</a></div>
-          <div id="guardar-salir">Guardar y Salir</div>
-          <div id="volver-ha-intentarlo">Volver ha intentarlo</div>
+        <div id="teclado">
+          <div class="tecla">Q</div>
+          <div class="tecla">W</div>
+          <div class="tecla">E</div>
+          <div class="tecla">R</div>
+          <div class="tecla">T</div>
+          <div class="tecla">Y</div>
+          <div class="tecla">U</div>
+          <div class="tecla">I</div>
+          <div class="tecla">O</div>
+          <div class="tecla">P</div>
+          <div class="tecla">A</div>
+          <div class="tecla">S</div>
+          <div class="tecla">D</div>
+          <div class="tecla">F</div>
+          <div class="tecla">G</div>
+          <div class="tecla">H</div>
+          <div class="tecla">J</div>
+          <div class="tecla">K</div>
+          <div class="tecla">L</div>
+          <div class="tecla">Z</div>
+          <div class="tecla">X</div>
+          <div class="tecla">C</div>
+          <div class="tecla">V</div>
+          <div class="tecla">B</div>
+          <div class="tecla">N</div>
+          <div class="tecla">M</div>
         </div>
+      </div>
 
-        <div id="interfaz-juego">
-          <div id="menu-superior">
-            <p id="user"></p>
-            <p id="cronometro"></p>
-            <p id="user"></p>
-            <p id="puntos-usuario">0</p>
-            <button id="guardar-puntaje">Guardar puntaje actual</button>
-          </div>
-
-            <div id="juego">
-
-              <div id="dibujo">
-                  <img src="" alt="">
-              </div>
-
-              <div id="palabra-adivinar">
-                <p class="letra" />
-              </div>
-
-              <div id="teclado">
-                <div class="tecla">Q</div>
-                <div class="tecla">W</div>
-                <div class="tecla">E</div>
-                <div class="tecla">R</div>
-                <div class="tecla">T</div>
-                <div class="tecla">Y</div>
-                <div class="tecla">U</div>
-                <div class="tecla">I</div>
-                <div class="tecla">O</div>
-                <div class="tecla">P</div>
-                <div class="tecla">A</div>
-                <div class="tecla">S</div>
-                <div class="tecla">D</div>
-                <div class="tecla">F</div>
-                <div class="tecla">G</div>
-                <div class="tecla">H</div>
-                <div class="tecla">J</div>
-                <div class="tecla">K</div>
-                <div class="tecla">L</div>
-                <div class="tecla">Z</div>
-                <div class="tecla">X</div>
-                <div class="tecla">C</div>
-                <div class="tecla">V</div>
-                <div class="tecla">B</div>
-                <div class="tecla">N</div>
-                <div class="tecla">M</div>
-
-              </div>
-            </div>
-
-            <div id="contenedor-errores">
-              <div class="error" />
-            </div>
-          
-        </div>
-        <script src="script-002.js"></script>
+      <div id="contenedor-errores"></div>
+    </div>
+    <script src="script-002.js"></script>
   </body>
-  </html>
+</html>

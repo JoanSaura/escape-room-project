@@ -48,7 +48,9 @@ body {
     margin-right: 25px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-  
+  img {
+    max-width: 525px;
+  }
   .volver {
     display: flex;
     background-color: red;

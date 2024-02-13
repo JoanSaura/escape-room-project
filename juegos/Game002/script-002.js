@@ -10,12 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const palabraAdivinar = document.getElementById("palabra-adivinar");
   const erroresContainer = document.getElementById("contenedor-errores");
   const teclasJuego = document.querySelectorAll('.tecla');
-
+  const juegoGanado = document.getElementById('juego-ganado');
+  const juegoPerdido = document.getElementById('juego-perdido');
+  const VolverHaIntentarlo = document.getElementById('volver-ha-intentarlo');
+  //Variables globales
   let tiempoTranscurrido = 0;
   let intervalo;
   let puntos = 0;
   let dificultadElegida = "";
   let palabraSeleccionada = "";
+  let cantidadErrores = 0;
 
   //Palabras para adivinar en base a la dificultad
   const fobiasFacil = [
@@ -109,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
      palabraAdivinar.innerHTML = ""; 
     for (let i = 0; i < palabra.length; i++) {
       const divLetra = document.createElement("div");
-      if (i < palabra.length - 5) { 
+      if (i < palabra.length) { 
         divLetra.textContent = '*'; 
       } else {
         divLetra.textContent = palabra[i]; 
@@ -133,7 +137,13 @@ document.addEventListener("DOMContentLoaded", function () {
       teclaClicada.classList.add("correcta");
     } else {
       teclaClicada.classList.add("erroneo");
-      
+      cantidadErrores++;
+      if (cantidadErrores <= erroresContainer.children.length) {
+        erroresContainer.children[cantidadErrores - 1].classList.add("errado");
+      }
+      if (cantidadErrores === erroresContainer.children.length) {
+        LanzarGameOver();
+      }
     }
   }
   
@@ -141,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
   teclasJuego.forEach(tecla => {
     tecla.addEventListener("click", function () {
       comprobarLetra(tecla.textContent, tecla);
+
     });
   });
   
@@ -153,6 +164,24 @@ document.addEventListener("DOMContentLoaded", function () {
       erroresContainer.appendChild(generadorError);
     }
   }
+
+    //Mostrar pantalla de derrota
+    function LanzarGameOver() {
+      detenerCronometro();
+      InterfazJuego.style.display = "none";
+      juegoPerdido.style.display = "block";
+    }
+
+  //Mostrar pantalla de victoria
+  function LanzarWin() {
+    detenerCronometro();
+    InterfazJuego.style.display = "none";
+    juegoGanado.style.display = "block";
+  }
+  //Recargue la pagina para volver a interntarlo
+  VolverHaIntentarlo.addEventListener("click", function () {
+    location.reload();
+  });
   
   // Eventos click con generación de cartas y errores según la dificultad
   DificultadFacil.addEventListener("click", function () {
