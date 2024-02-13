@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  //Capturamos elementos del HTML
   const panelDificultad = document.getElementById("selector-dificultad");
   const DificultadFacil = document.getElementById("Principiante");
   const DificultadMedia = document.getElementById("Avanzado");
