@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         contraseña: contraseña,
         Juego1 : [
           {
+            "dificultad":null,
             "tiempo" : null,
             "puntos" : null,
             "superado" : false
@@ -90,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         Juego2: [
           {
+            "dificultad":null,
             "tiempo" : null,
             "puntos" : null,
             "superado" : false
@@ -97,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         Juego3: [
           {
+            "dificultad":null,
             "tiempo" : null,
             "puntos" : null,
             "superado" : false
@@ -104,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         Juego4 :[
           {
+            "dificultad":null,
             "tiempo" : null,
             "puntos" : null,
             "superado" : false
@@ -115,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }      
 
       usuariosGuardados.push(nuevoUsuario);
-      localStorage.setItem("usuarios", JSON.stringify(usuariosGuardados));
+      localStorage.setItem("usuarioActual", usuario.nombre);
 
       // Cierra el formulario después de guardar
       crearUsuarioDiv.style.display = "none";
@@ -142,9 +146,9 @@ BtninicioSesion.addEventListener("click", function () {
       alert("Iniciar sesión como " + usuario.nombre);
       cerrarPopup();
       // Muestra que usuario esta dado de alta ya en el menu
-      usuarioRegistradoText.innerText = "Hola " +usuario.nombre;
+      usuarioRegistradoText.innerText = "Hola " + usuario.nombre;
       // Después de guardar el nuevo usuario
-localStorage.setItem("usuarioActual", nuevoUsuario.nombre);
+      localStorage.setItem("usuarioActual", usuario.nombre);
 
     });
     // Agregar el elemento de la lista al elemento ul
@@ -157,6 +161,7 @@ localStorage.setItem("usuarioActual", nuevoUsuario.nombre);
   cerrarInicioSesion.addEventListener("click", function () {
     cerrarPopup();
   });
+
  nuevoJuegoBtn.addEventListener('click', function () {
     if (usuarioRegistradoText.innerText === "No hay ninguna sesión activa") {
       alert("No se puede jugar sin ningún usuario elegido");

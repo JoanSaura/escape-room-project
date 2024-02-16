@@ -19,6 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let intervalo;
   let dificultadElegida = "";
   let puntos = 0;
+  //Capturamos los elementos del DOM
+  const usuarioActual = localStorage.getItem("usuarioActual");
+  if (usuarioActual) {
+    console.log("Usuario cargado:", usuarioActual);
+  } else {
+    console.log("No hay usuario cargado. Iniciar sesión para jugar.");
+  }
   //Para implementar la logica del juego
   let cartasSeleccionadas = [];
   let cantidadErrores = 0;
@@ -189,7 +196,35 @@ document.addEventListener("DOMContentLoaded", function () {
     detenerCronometro();
     InterfazJuego.style.display = "none";
     menuVictoria.style.display = "block";
+    
+    // Actualizar el objeto usuario
+    if (usuarioActual) {
+      const juegoGanado = {
+        dificultad: dificultadElegida,
+        puntos: puntos,
+        superado: true,
+        tiempo: tiempoTranscurrido
+      };
+  
+      // Identificar y actualizar el juego según la dificultad
+      switch (dificultadElegida) {
+        case "facil":
+          usuarioActual.Juego1[0] = juegoGanado;
+          break;
+        case "normal":
+          usuarioActual.Juego1[0] = juegoGanado;
+          break;
+        case "dificil":
+          usuarioActual.Juego1[0] = juegoGanado;
+          break;
+        // Puedes agregar más casos según la cantidad de juegos que tengas
+      }
+  
+      localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
+    }
   }
+  
+  
 
   GuardarYSalir.addEventListener("click", function () {});
 

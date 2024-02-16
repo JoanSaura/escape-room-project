@@ -15,6 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const juegoGanado = document.getElementById("juego-ganado");
   const juegoPerdido = document.getElementById("juego-perdido");
   const VolverHaIntentarlo = document.getElementById("volver-ha-intentarlo");
+   //Capturamos los elementos del DOM
+   const usuarioActual = localStorage.getItem("usuarioActual");
+   if (usuarioActual) {
+     console.log("Usuario cargado:", usuarioActual);
+   } else {
+     console.log("No hay usuario cargado. Iniciar sesión para jugar.");
+   }
   //Variables globales
   let tiempoTranscurrido = 0;
   let intervalo;
@@ -178,7 +185,33 @@ document.addEventListener("DOMContentLoaded", function () {
   function LanzarWin() {
     detenerCronometro();
     InterfazJuego.style.display = "none";
-    juegoGanado.style.display = "block";
+    menuVictoria.style.display = "block";
+    
+    // Actualizar el objeto usuario
+    if (usuarioActual) {
+      const juegoGanado = {
+        dificultad: dificultadElegida,
+        puntos: puntos,
+        superado: true,
+        tiempo: tiempoTranscurrido
+      };
+  
+      // Identificar y actualizar el juego según la dificultad
+      switch (dificultadElegida) {
+        case "facil":
+          usuarioActual.Juego2[0] = juegoGanado;
+          break;
+        case "normal":
+          usuarioActual.Juego2[0] = juegoGanado;
+          break;
+        case "dificil":
+          usuarioActual.Juego2[0] = juegoGanado;
+          break;
+        // Puedes agregar más casos según la cantidad de juegos que tengas
+      }
+  
+      localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
+    }
   }
   //Recargue la pagina para volver a interntarlo
   VolverHaIntentarlo.addEventListener("click", function () {
