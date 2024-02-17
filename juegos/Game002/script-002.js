@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cronometro = document.getElementById("cronometro");
   const InterfazJuego = document.getElementById("interfaz-juego");
   const PuntosUser = document.getElementById("puntos-usuario");
+  const nombreUser = document.getElementById("user");
   const fondoSelector = document.querySelector(".fondo-selector");
   const palabraAdivinar = document.getElementById("palabra-adivinar");
   const erroresContainer = document.getElementById("contenedor-errores");
@@ -248,4 +249,5 @@ document.addEventListener("DOMContentLoaded", function () {
     const palabra = seleccionarPalabra(dificultadElegida);
     generarLetrasPalabra(palabra);
   });
+  nombreUser.textContent = `${usuarioActual}`
 });

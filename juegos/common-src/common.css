@@ -76,11 +76,6 @@ body {
     font-family: 'Single Day', sans-serif;
 }
 
-#guardar-puntaje {
-    float: right;
-    margin-right: 10px;
-}
-
 #juego-perdido, #juego-ganado {
     display: none;
     flex-direction: column;

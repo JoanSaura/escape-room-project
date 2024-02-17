@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cronometro = document.getElementById("cronometro");
   const panelDificultad = document.getElementById("selector-dificultad");
   const InterfazJuego = document.getElementById("interfaz-juego");
+  const nombreUser = document.getElementById("user");
   const PuntosUser = document.getElementById("puntos-usuario");
   const fondoSelector = document.querySelector(".fondo-selector");
   const tablero = document.getElementById("tablero");
@@ -226,7 +227,9 @@ document.addEventListener("DOMContentLoaded", function () {
   
   
 
-  GuardarYSalir.addEventListener("click", function () {});
+  GuardarYSalir.addEventListener("click", function () {
+    
+  });
 
   //Recargue la pagina para volver a interntarlo 
   VolverHaIntentarlo.addEventListener("click", function () {
@@ -256,5 +259,6 @@ document.addEventListener("DOMContentLoaded", function () {
     reiniciarCronometro();
     iniciarCronometro();
     generarCartasYErrores(20, 3);
-  });
+  })
+  nombreUser.textContent = `${usuarioActual}`
 });
