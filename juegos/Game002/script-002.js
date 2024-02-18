@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const erroresContainer = document.getElementById("contenedor-errores");
   const teclasJuego = document.querySelectorAll(".tecla");
   const letras = palabraAdivinar.querySelectorAll(".letra");
-  const juegoGanado = document.getElementById("juego-ganado");
+  const menuVictoria = document.getElementById("juego-ganado");
   const juegoPerdido = document.getElementById("juego-perdido");
   const VolverHaIntentarlo = document.querySelectorAll("#volver-ha-intentarlo");
    //Capturamos los elementos del DOM

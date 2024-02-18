@@ -84,8 +84,11 @@ body {
   align-items: center;
   justify-content: center;
   background-color: aliceblue;
+  margin-left: 125px;
+  margin-right: 125px;
+  margin-top: 125px;
   color: red;
-  margin: 215px auto 25px;
+  font-size: 30px;
   padding: 25px;
   border-radius: 15px;
 }

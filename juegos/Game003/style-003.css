@@ -1,21 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 body {
   background-color: black;
 }
 #tablero-sudoku {
-  margin: auto; 
-  max-width: 600px; 
+  margin: auto;
+  max-width: 600px;
   border: 2px solid black;
   padding: 5px;
   background-color: rgb(87, 8, 8);
 }
 
-
 #tablero-sudoku > tr > td {
   border: 2px solid black;
   background-color: black;
-  width: 50px; 
-  height: 50px; 
+  width: 50px;
+  height: 50px;
 }
 #sample {
   margin: 25px;
@@ -26,7 +25,7 @@ body {
 }
 
 #sample p {
-  font-family: 'Source Code Pro', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Source Code Pro", Tahoma, Geneva, Verdana, sans-serif;
   color: aliceblue;
   font-size: 25px;
 }
@@ -35,17 +34,17 @@ body {
   font-size: 20px;
 }
 .numero-sample {
-  display: inline-block; 
-  border: 1px solid black; 
-  width: 50px; 
-  height: 50px; 
+  display: inline-block;
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
 }
 .numero-sample > img {
-  max-width: 50px; 
-  max-height: 50px; 
+  max-width: 50px;
+  max-height: 50px;
 }
 .numero-sample > p {
- margin-top: 25px;
+  margin-top: 25px;
 }
 .numero-vacio {
   cursor: pointer;
@@ -62,7 +61,6 @@ body {
   border: 0;
 }
 .imagen-sudoku {
-  max-width: 50px; 
-  max-height: 50px; 
+  max-width: 50px;
+  max-height: 50px;
 }
-
