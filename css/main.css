@@ -16,7 +16,7 @@ body {
   transform: rotate(15deg); 
 }
 .boton-manual {
-  background-color: red;
+  background-color: rgb(100, 36, 36);
   color: aliceblue;
   border-radius: 25px;
   width: 30px;
@@ -28,12 +28,13 @@ body {
   justify-content: center;
   align-items: center;
 }
-.boton a:hover {
-    color: aqua;
-    transition: 0.5;
+.boton-manual a:visited {
+  text-decoration: none; 
+  color: aliceblue; 
 }
 .boton-menu, .gestion-usuarios{
-  background-color: red;
+  background-color: rgb(100, 36, 36);
+  color: aliceblue;
   border-radius: 25px;
   padding: 10px;
   margin-top: 5px;
@@ -72,7 +73,7 @@ body {
 }
 
 #menu-usuarios > .boton-usuarios {
-  background-color:crimson;
+  background-color: rgb(100, 36, 36);
   border-radius: 25px;
   padding: 15px;
   margin-top: 15px;
@@ -84,7 +85,7 @@ body {
 
 .boton-usuarios:hover {
   background-color: chartreuse;
-  color: blue;
+  color: rgb(240, 240, 240);
   transform: 1.2;
 }
 
@@ -154,7 +155,6 @@ body {
   transition: 1.2s;
 }
 
-/*Para los usuarios registrados*/
 #lista-usuarios {
   text-align: center;
   list-style: none;
@@ -181,7 +181,6 @@ body {
   transition: 0.7s;
 }
 
-/*Selector de juego*/
 #selector-juego {
   position: fixed;
   top: 50%;

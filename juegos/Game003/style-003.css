@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 body {
   background-color: black;
 }
@@ -20,10 +21,12 @@ body {
   margin: 25px;
   text-align: center;
   background-color: rgb(49, 39, 58);
+  padding-top: 5px;
+  padding-bottom: 25px;
 }
 
 #sample p {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Source Code Pro', Tahoma, Geneva, Verdana, sans-serif;
   color: aliceblue;
   font-size: 25px;
 }
