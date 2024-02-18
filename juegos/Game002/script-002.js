@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const letras = palabraAdivinar.querySelectorAll(".letra");
   const juegoGanado = document.getElementById("juego-ganado");
   const juegoPerdido = document.getElementById("juego-perdido");
-  const VolverHaIntentarlo = document.getElementById("volver-ha-intentarlo");
+  const VolverHaIntentarlo = document.querySelectorAll("#volver-ha-intentarlo");
    //Capturamos los elementos del DOM
    const usuarioActual = localStorage.getItem("usuarioActual");
    if (usuarioActual) {
@@ -215,9 +215,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   //Recargue la pagina para volver a interntarlo
-  VolverHaIntentarlo.addEventListener("click", function () {
+ VolverHaIntentarlo.forEach(button => {
+  button.addEventListener("click", function () {
     location.reload();
   });
+});
+
 
   // Eventos click con generación de cartas y errores según la dificultad
   DificultadFacil.addEventListener("click", function () {

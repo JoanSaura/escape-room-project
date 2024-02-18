@@ -13,8 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const erroresContainer = document.getElementById("errores");
   const menuGameOver = document.getElementById("juego-perdido");
   const menuVictoria = document.getElementById("juego-ganado");
-  const GuardarYSalir = document.getElementById("guardar-salir");
-  const VolverHaIntentarlo = document.getElementById("volver-ha-intentarlo");
+  const VolverHaIntentarlo = document.querySelectorAll("#volver-ha-intentarlo");
   //Variables para el cronometro
   let tiempoTranscurrido = 0;
   let intervalo;
@@ -227,8 +226,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   //Recargue la pagina para volver a interntarlo 
-  VolverHaIntentarlo.addEventListener("click", function () {
-    location.reload();
+  VolverHaIntentarlo.forEach(button => {
+    button.addEventListener("click", function () {
+      location.reload();
+    });
   });
 
   // Eventos click con generación de cartas y errores según la dificultad

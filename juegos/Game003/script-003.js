@@ -7,11 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const juegoGanado = document.getElementById("juego-ganado");
   const juegoPerdido = document.getElementById("juego-perdido");
   const fondoSelector = document.querySelector(".fondo-selector");
-  const VolverHaIntentarlo = document.getElementById("volver-ha-intentarlo");
-  const erroresContainer = document.getElementById("contenedor-errores");
+  const VolverHaIntentarlo = document.querySelectorAll("#volver-ha-intentarlo");
   const InterfazJuego = document.getElementById("interfaz-juego");
   const PuntosUser = document.getElementById("puntos-usuario");
-  const menuVictoria = document.getElementById("menu-victoria");
   const tableroSudoku = document.getElementById("tablero-sudoku");
 
   //Capturamos los elementos del DOM
@@ -64,8 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function generarTableroSudoku() {
-    const tableroSudoku = document.getElementById("tablero-sudoku");
-
     // Limpia cualquier contenido existente
     tableroSudoku.innerHTML = "";
 
@@ -79,51 +75,51 @@ document.addEventListener("DOMContentLoaded", function () {
     llenarTablero(tablero);
 
     // Ruta de la carpeta que contiene las imágenes
-    const rutaImagenes = 'img/';
+    const rutaImagenes = "img/";
 
     // Genera las filas y columnas de la cuadrícula
     for (let i = 0; i < tamano; i++) {
-        const fila = document.createElement("tr");
+      const fila = document.createElement("tr");
 
-        for (let j = 0; j < tamano; j++) {
-            const celda = document.createElement("td");
-            const img = document.createElement("img");
+      for (let j = 0; j < tamano; j++) {
+        const celda = document.createElement("td");
+        const img = document.createElement("img");
 
-            // Asigna la ruta de la imagen correspondiente al número en la celda
-            const numero = tablero[i][j];
-            img.src = `${rutaImagenes}${numero}.png`;
+        // Asigna la ruta de la imagen correspondiente al número en la celda
+        const numero = tablero[i][j];
+        img.src = `${rutaImagenes}${numero}.png`;
 
-            // Añade la clase .imagen-sudoku a las imágenes
-            img.classList.add("imagen-sudoku");
+        // Añade la clase .imagen-sudoku a las imágenes
+        img.classList.add("imagen-sudoku");
 
-            // Añade la clase .numero-vacio a ciertas celdas según la dificultad
-            if (dificultadElegida === "facil" && Math.random() < 0.5) {
-                celda.classList.add("numero-vacio");
-                img.classList.add("oculto-visualmente");
-            } else if (dificultadElegida === "normal" && Math.random() < 0.7) {
-                celda.classList.add("numero-vacio");
-                img.classList.add("oculto-visualmente");
-            } else if (dificultadElegida === "dificil" && Math.random() < 0.9) {
-                celda.classList.add("numero-vacio");
-                img.classList.add("oculto-visualmente");
-            }
-
-            // Añade un evento de clic a la celda
-            celda.addEventListener("click", function () {
-                manejarEntradaUsuario(celda);
-            });
-
-            // Añade la imagen a la celda
-            celda.appendChild(img);
-
-            // Añade la celda a la fila
-            fila.appendChild(celda);
+        // Añade la clase .numero-vacio a ciertas celdas según la dificultad
+        if (dificultadElegida === "facil" && Math.random() < 0.5) {
+          celda.classList.add("numero-vacio");
+          img.classList.add("oculto-visualmente");
+        } else if (dificultadElegida === "normal" && Math.random() < 0.7) {
+          celda.classList.add("numero-vacio");
+          img.classList.add("oculto-visualmente");
+        } else if (dificultadElegida === "dificil" && Math.random() < 0.9) {
+          celda.classList.add("numero-vacio");
+          img.classList.add("oculto-visualmente");
         }
 
-        // Añade la fila al tablero
-        tableroSudoku.appendChild(fila);
+        // Añade un evento de clic a la celda
+        celda.addEventListener("click", function () {
+          manejarEntradaUsuario(celda);
+        });
+
+        // Añade la imagen a la celda
+        celda.appendChild(img);
+
+        // Añade la celda a la fila
+        fila.appendChild(celda);
+      }
+
+      // Añade la fila al tablero
+      tableroSudoku.appendChild(fila);
     }
-}
+  }
 
   // Función para llenar el tablero de manera válida
   function llenarTablero(tablero) {
@@ -137,7 +133,6 @@ document.addEventListener("DOMContentLoaded", function () {
           tablero[i][j] = getRandomInt(1, tamano);
           intentos++;
         } while (!esNumeroValido(tablero, i, j) && intentos < 10);
-
         // Reinicia el valor si no se encuentra un número válido en 10 intentos
         if (intentos === 10) {
           tablero[i][j] = 0;
@@ -181,33 +176,35 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Función para manejar la entrada del usuario
- // Función para manejar la entrada del usuario
-function manejarEntradaUsuario(celda) {
-  // Pregunta al usuario por el número a insertar
-  const numeroIngresado = prompt("Ingresa un número del 1 al 9:");
+  function manejarEntradaUsuario(celda) {
+    // Pregunta al usuario por el número a insertar
+    const numeroIngresado = prompt("Ingresa un número del 1 al 9:");
 
-  // Verifica si el número ingresado es válido
-  if (numeroIngresado && /^[1-9]$/.test(numeroIngresado)) {
+    // Verifica si el número ingresado es válido
+    if (numeroIngresado && /^[1-9]$/.test(numeroIngresado)) {
       const img = celda.querySelector("img");
 
       // Verifica si el número ingresado coincide con el número oculto
-      if (parseInt(numeroIngresado) === parseInt(img.src.split('/').pop().split('.')[0])) {
-          // Muestra la imagen oculta
-          img.classList.remove("oculto-visualmente");
+      if (
+        parseInt(numeroIngresado) ===
+        parseInt(img.src.split("/").pop().split(".")[0])
+      ) {
+        // Muestra la imagen oculta
+        img.classList.remove("oculto-visualmente");
 
-          // Elimina la clase .numero-vacio
-          celda.classList.remove("numero-vacio");
-
-          // Verifica si quedan celdas ocultas
-          const celdasOcultas = document.querySelectorAll(".numero-vacio");
-          if (celdasOcultas.length === 0) {
-              // Si no quedan celdas ocultas, lanza la victoria
-              LanzarWin();
-          }
+        // Elimina la clase .numero-vacio
+        celda.classList.remove("numero-vacio");
+        puntos += 5;
+        PuntosUser.innerHTML = `${puntos}`;
+        // Verifica si quedan celdas ocultas
+        const celdasOcultas = document.querySelectorAll(".numero-vacio");
+        if (celdasOcultas.length === 0) {
+          // Si no quedan celdas ocultas, lanza la victoria
+          LanzarWin();
+        }
       }
+    }
   }
-}
-
 
   // Actualizar el texto del cronometro
   function actualizarCronometro() {
@@ -220,15 +217,16 @@ function manejarEntradaUsuario(celda) {
   }
 
   //Recargue la pagina para volver a interntarlo
-  VolverHaIntentarlo.addEventListener("click", function () {
-    location.reload();
+  VolverHaIntentarlo.forEach(button => {
+    button.addEventListener("click", function () {
+      location.reload();
+    });
   });
-
   //Mostrar pantalla de victoria
   function LanzarWin() {
     detenerCronometro();
     InterfazJuego.style.display = "none";
-    menuVictoria.style.display = "block";
+    juegoGanado.style.display = "block";
 
     // Actualizar el objeto usuario
     if (usuarioActual) {
