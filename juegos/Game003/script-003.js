@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const InterfazJuego = document.getElementById("interfaz-juego");
   const PuntosUser = document.getElementById("puntos-usuario");
   const menuVictoria = document.getElementById("menu-victoria");
+  const tableroSudoku = document.getElementById("tablero-sudoku");
+
   //Capturamos los elementos del DOM
   const usuarioActual = localStorage.getItem("usuarioActual");
   if (usuarioActual) {
@@ -76,36 +78,43 @@ document.addEventListener("DOMContentLoaded", function () {
     // Llena el tablero de manera válida
     llenarTablero(tablero);
 
+    // Ruta de la carpeta que contiene las imágenes
+    const rutaImagenes = 'img/';
+
     // Genera las filas y columnas de la cuadrícula
     for (let i = 0; i < tamano; i++) {
         const fila = document.createElement("tr");
 
         for (let j = 0; j < tamano; j++) {
             const celda = document.createElement("td");
-            const span = document.createElement("span");
+            const img = document.createElement("img");
 
-            // Muestra el número en la celda
-            span.textContent = tablero[i][j];
+            // Asigna la ruta de la imagen correspondiente al número en la celda
+            const numero = tablero[i][j];
+            img.src = `${rutaImagenes}${numero}.png`;
+
+            // Añade la clase .imagen-sudoku a las imágenes
+            img.classList.add("imagen-sudoku");
 
             // Añade la clase .numero-vacio a ciertas celdas según la dificultad
             if (dificultadElegida === "facil" && Math.random() < 0.5) {
                 celda.classList.add("numero-vacio");
-                span.classList.add("oculto-visualmente");
+                img.classList.add("oculto-visualmente");
             } else if (dificultadElegida === "normal" && Math.random() < 0.7) {
                 celda.classList.add("numero-vacio");
-                span.classList.add("oculto-visualmente");
+                img.classList.add("oculto-visualmente");
             } else if (dificultadElegida === "dificil" && Math.random() < 0.9) {
                 celda.classList.add("numero-vacio");
-                span.classList.add("oculto-visualmente");
+                img.classList.add("oculto-visualmente");
             }
 
-              // Añade un evento de clic a la celda
-        celda.addEventListener("click", function() {
-          manejarEntradaUsuario(celda);
-      });
+            // Añade un evento de clic a la celda
+            celda.addEventListener("click", function () {
+                manejarEntradaUsuario(celda);
+            });
 
-            // Añade el span a la celda
-            celda.appendChild(span);
+            // Añade la imagen a la celda
+            celda.appendChild(img);
 
             // Añade la celda a la fila
             fila.appendChild(celda);
@@ -116,38 +125,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 }
 
-
-// Función para llenar el tablero de manera válida
-function llenarTablero(tablero) {
+  // Función para llenar el tablero de manera válida
+  function llenarTablero(tablero) {
     const tamano = tablero.length;
 
     for (let i = 0; i < tamano; i++) {
-        for (let j = 0; j < tamano; j++) {
-            // Intenta colocar un número válido en la celda
-            let intentos = 0;
-            do {
-                tablero[i][j] = getRandomInt(1, tamano);
-                intentos++;
-            } while (!esNumeroValido(tablero, i, j) && intentos < 10);
+      for (let j = 0; j < tamano; j++) {
+        // Intenta colocar un número válido en la celda
+        let intentos = 0;
+        do {
+          tablero[i][j] = getRandomInt(1, tamano);
+          intentos++;
+        } while (!esNumeroValido(tablero, i, j) && intentos < 10);
 
-            // Reinicia el valor si no se encuentra un número válido en 10 intentos
-            if (intentos === 10) {
-                tablero[i][j] = 0;
-                j -= 2; // Retrocede dos posiciones para intentar nuevamente en la misma columna
-            }
+        // Reinicia el valor si no se encuentra un número válido en 10 intentos
+        if (intentos === 10) {
+          tablero[i][j] = 0;
+          j -= 2; // Retrocede dos posiciones para intentar nuevamente en la misma columna
         }
+      }
     }
-}
+  }
 
-// Función para verificar si un número es válido en la posición dada
-function esNumeroValido(tablero, fila, columna) {
+  // Función para verificar si un número es válido en la posición dada
+  function esNumeroValido(tablero, fila, columna) {
     const numero = tablero[fila][columna];
 
     // Verifica la fila y columna
     for (let i = 0; i < tablero.length; i++) {
-        if ((i !== fila && tablero[i][columna] === numero) || (i !== columna && tablero[fila][i] === numero)) {
-            return false;
-        }
+      if (
+        (i !== fila && tablero[i][columna] === numero) ||
+        (i !== columna && tablero[fila][i] === numero)
+      ) {
+        return false;
+      }
     }
 
     // Verifica el cuadrante 3x3
@@ -155,40 +166,45 @@ function esNumeroValido(tablero, fila, columna) {
     const cuadranteColumnaInicio = Math.floor(columna / 3) * 3;
 
     for (let i = cuadranteFilaInicio; i < cuadranteFilaInicio + 3; i++) {
-        for (let j = cuadranteColumnaInicio; j < cuadranteColumnaInicio + 3; j++) {
-            if (!(i === fila && j === columna) && tablero[i][j] === numero) {
-                return false;
-            }
+      for (
+        let j = cuadranteColumnaInicio;
+        j < cuadranteColumnaInicio + 3;
+        j++
+      ) {
+        if (!(i === fila && j === columna) && tablero[i][j] === numero) {
+          return false;
         }
+      }
     }
 
     return true;
-}
+  }
 
-// Función para manejar la entrada del usuario
+  // Función para manejar la entrada del usuario
+ // Función para manejar la entrada del usuario
 function manejarEntradaUsuario(celda) {
   // Pregunta al usuario por el número a insertar
   const numeroIngresado = prompt("Ingresa un número del 1 al 9:");
 
   // Verifica si el número ingresado es válido
   if (numeroIngresado && /^[1-9]$/.test(numeroIngresado)) {
-    const span = celda.querySelector("span");
+      const img = celda.querySelector("img");
 
-    // Verifica si el número ingresado coincide con el número oculto
-    if (span.textContent === numeroIngresado) {
-      // Actualiza el contenido de la celda con el número ingresado
-      span.textContent = numeroIngresado;
-      celda.classList.add("cassila-acertada");
-      celda.classList.remove("numero-vacio");
-      span.classList.remove("oculto-visualmente");
+      // Verifica si el número ingresado coincide con el número oculto
+      if (parseInt(numeroIngresado) === parseInt(img.src.split('/').pop().split('.')[0])) {
+          // Muestra la imagen oculta
+          img.classList.remove("oculto-visualmente");
 
-      // Verifica si quedan celdas ocultas
-      const celdasOcultas = document.querySelectorAll(".numero-vacio");
-      if (celdasOcultas.length === 0) {
-        // Si no quedan celdas ocultas, lanza la victoria
-        LanzarWin();
+          // Elimina la clase .numero-vacio
+          celda.classList.remove("numero-vacio");
+
+          // Verifica si quedan celdas ocultas
+          const celdasOcultas = document.querySelectorAll(".numero-vacio");
+          if (celdasOcultas.length === 0) {
+              // Si no quedan celdas ocultas, lanza la victoria
+              LanzarWin();
+          }
       }
-    }
   }
 }
 
