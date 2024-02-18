@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const juegoGanado = document.getElementById("juego-ganado");
   const juegoPerdido = document.getElementById("juego-perdido");
   const fondoSelector = document.querySelector(".fondo-selector");
-  const VolverHaIntentarlo = document.querySelectorAll(".volver-ha-intentarlo");
+  const VolverHaIntentarlo = document.getElementById("volver-ha-intentarlo");
   const erroresContainer = document.getElementById("contenedor-errores");
   const InterfazJuego = document.getElementById("interfaz-juego");
   const PuntosUser = document.getElementById("puntos-usuario");
@@ -70,72 +70,100 @@ document.addEventListener("DOMContentLoaded", function () {
     // Tamaño del tablero (en este caso, un Sudoku de 9x9)
     const tamano = 9;
 
+    // Genera un tablero vacío
+    const tablero = Array.from({ length: tamano }, () => Array(tamano).fill(0));
+
+    // Llena el tablero de manera válida
+    llenarTablero(tablero);
+
     // Genera las filas y columnas de la cuadrícula
     for (let i = 0; i < tamano; i++) {
-      const fila = document.createElement("tr");
+        const fila = document.createElement("tr");
 
-      for (let j = 0; j < tamano; j++) {
-        const celda = document.createElement("td");
-        const span = document.createElement("span");
+        for (let j = 0; j < tamano; j++) {
+            const celda = document.createElement("td");
+            const span = document.createElement("span");
 
-        // Genera un número aleatorio del 1 al 9
-        const numeroAleatorio = getRandomInt(1, 9);
+            // Muestra el número en la celda
+            span.textContent = tablero[i][j];
 
-        // Determina la probabilidad de aplicar la clase "numero-vacio" a la celda según la dificultad
-        let probabilidadNumeroVacio;
+            // Añade la clase .numero-vacio a ciertas celdas según la dificultad
+            if (dificultadElegida === "facil" && Math.random() < 0.5) {
+                celda.classList.add("numero-vacio");
+                span.classList.add("oculto-visualmente");
+            } else if (dificultadElegida === "normal" && Math.random() < 0.7) {
+                celda.classList.add("numero-vacio");
+                span.classList.add("oculto-visualmente");
+            } else if (dificultadElegida === "dificil" && Math.random() < 0.9) {
+                celda.classList.add("numero-vacio");
+                span.classList.add("oculto-visualmente");
+            }
 
-        switch (dificultadElegida) {
-          case "facil":
-            probabilidadNumeroVacio = 0.3; // Ajusta según desees
-            break;
-          case "normal":
-            probabilidadNumeroVacio = 0.2; // Ajusta según desees
-            break;
-          case "dificil":
-            probabilidadNumeroVacio = 0.1; // Ajusta según desees
-            break;
-          default:
-            probabilidadNumeroVacio = 0.3;
+              // Añade un evento de clic a la celda
+        celda.addEventListener("click", function() {
+          manejarEntradaUsuario(celda);
+      });
+
+            // Añade el span a la celda
+            celda.appendChild(span);
+
+            // Añade la celda a la fila
+            fila.appendChild(celda);
         }
 
-        // Determina si se aplica la clase "numero-vacio" a la celda
-        if (Math.random() < probabilidadNumeroVacio) {
-          // Si se aplica la clase "numero-vacio", muestra el número y aplica la clase
-          span.textContent = numeroAleatorio;
-          celda.classList.add("numero-vacio");
-          span.classList.add("oculto-visualmente");
-        } else {
-          // Si no se aplica la clase "numero-vacio", muestra el número sin la clase
-          span.textContent = numeroAleatorio;
-        }
-
-        // Añade el span a la celda
-        celda.appendChild(span);
-
-        // Añade la celda a la fila
-        fila.appendChild(celda);
-      }
-
-      // Añade la fila al tablero
-      tableroSudoku.appendChild(fila);
+        // Añade la fila al tablero
+        tableroSudoku.appendChild(fila);
     }
+}
 
-    // Itera sobre las filas y columnas para agregar eventos de escucha
+
+// Función para llenar el tablero de manera válida
+function llenarTablero(tablero) {
+    const tamano = tablero.length;
+
     for (let i = 0; i < tamano; i++) {
-      for (let j = 0; j < tamano; j++) {
-        const celda = tableroSudoku.rows[i].cells[j];
+        for (let j = 0; j < tamano; j++) {
+            // Intenta colocar un número válido en la celda
+            let intentos = 0;
+            do {
+                tablero[i][j] = getRandomInt(1, tamano);
+                intentos++;
+            } while (!esNumeroValido(tablero, i, j) && intentos < 10);
 
-        // Verifica si la celda tiene la clase "numero-vacio"
-        if (celda.classList.contains("numero-vacio")) {
-          // Agrega un evento de escucha para el evento "click"
-          celda.addEventListener("click", function () {
-            // Llama a la función para manejar la entrada del usuario
-            manejarEntradaUsuario(celda);
-          });
+            // Reinicia el valor si no se encuentra un número válido en 10 intentos
+            if (intentos === 10) {
+                tablero[i][j] = 0;
+                j -= 2; // Retrocede dos posiciones para intentar nuevamente en la misma columna
+            }
         }
-      }
     }
-  }
+}
+
+// Función para verificar si un número es válido en la posición dada
+function esNumeroValido(tablero, fila, columna) {
+    const numero = tablero[fila][columna];
+
+    // Verifica la fila y columna
+    for (let i = 0; i < tablero.length; i++) {
+        if ((i !== fila && tablero[i][columna] === numero) || (i !== columna && tablero[fila][i] === numero)) {
+            return false;
+        }
+    }
+
+    // Verifica el cuadrante 3x3
+    const cuadranteFilaInicio = Math.floor(fila / 3) * 3;
+    const cuadranteColumnaInicio = Math.floor(columna / 3) * 3;
+
+    for (let i = cuadranteFilaInicio; i < cuadranteFilaInicio + 3; i++) {
+        for (let j = cuadranteColumnaInicio; j < cuadranteColumnaInicio + 3; j++) {
+            if (!(i === fila && j === columna) && tablero[i][j] === numero) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
 
 // Función para manejar la entrada del usuario
 function manejarEntradaUsuario(celda) {
