@@ -25,7 +25,8 @@ body {
 }
 
 #teclado {
-  margin: 40px;
+  margin-right: 550px;
+  margin-left: 500px;
   text-align: center;
   margin-top: 20px;
 }
@@ -53,6 +54,7 @@ body {
 }
 
 #contenedor-errores {
+  margin-top: 35px;
   background-color: rgb(164, 146, 146);
   padding: 10px;
   border-radius: 10px;

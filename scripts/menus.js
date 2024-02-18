@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   //Elementos del menu principal
-  const selectorJuego = document.getElementById('selector-juego');
-  const cerrarSelectorJuego = document.getElementById('cerrar-selector-juego');
   const nuevoJuegoBtn = document.getElementById('nuevo-juego');
   const botonUsuarios = document.querySelector(".gestion-usuarios");
   const menuUsuarios = document.getElementById("menu-usuarios");
@@ -166,7 +164,8 @@ BtninicioSesion.addEventListener("click", function () {
     if (usuarioRegistradoText.innerText === "No hay ninguna sesión activa") {
       alert("No se puede jugar sin ningún usuario elegido");
     } else {
-       mostrarPopup(selectorJuego);
+      window.location.href = '/juegos/Game001/index-001.html';
+
     }
   });
 });
