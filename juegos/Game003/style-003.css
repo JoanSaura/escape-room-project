@@ -41,6 +41,9 @@ body {
   max-width: 50px; 
   max-height: 50px; 
 }
+.numero-sample > p {
+ margin-top: 25px;
+}
 .numero-vacio {
   cursor: pointer;
 }
