@@ -189,13 +189,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function LanzarGameOver() {
     detenerCronometro();
     InterfazJuego.style.display = "none";
-    menuGameOver.style.display = "block";
+    menuGameOver.style.display = "flex";
   }
   //Mostrar pantalla de victoria
   function LanzarWin() {
     detenerCronometro();
     InterfazJuego.style.display = "none";
-    menuVictoria.style.display = "block";
+    menuVictoria.style.display = "flex";
     
     // Actualizar el objeto usuario
     if (usuarioActual) {

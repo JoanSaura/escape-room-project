@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
-
 body {
   margin: 0;
   padding: 0;
-  background-size: cover;
-  background-repeat: no-repeat;
+  margin-top: 0; /* Agregado para eliminar el margen superior */
 }
 
 .fondo-selector {
+    margin-top: none;
     background-color: black;
     width: 100%;
     height: 100vh; 
@@ -21,12 +20,10 @@ body {
     font-family: Sixtyfour;
 }
 .dificultad {
-
     width: 50%;
     height: 45px;
     border-radius: 24px;
     font-size: 40px;
-    margin: 15px;
     cursor: pointer;
 }
 
@@ -44,14 +41,13 @@ body {
   }
 
 #selector-dificultad {
-    border-radius: 15px;
-    margin: 25px;
     background-color: grey;
     padding: 20px; 
     text-align: center;
 }
 
 #grid-dificultad {
+    margin-top: 25px;
     display: flex;
     align-items: center;
 }
@@ -75,39 +71,47 @@ body {
     font-size: 25px;
     font-family: 'Single Day', sans-serif;
 }
+#cronometro {
+  margin-left: 25px;
+}
+#puntos-usuario {
+  margin-right: 25px;
+}
 
 #juego-perdido, #juego-ganado {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: aliceblue;
-    color: red;
-    margin: 215px auto 25px; 
-    padding: 25px;
-    border-radius: 15px;
-  }
-  
-  #juego-perdido > div, #juego-ganado > div {
-    display: inline-block;
-    background-color: rgb(39, 38, 36);
-    color: aliceblue;
-    margin: 1%; 
-    padding: 1%;
-    cursor: pointer;
-    border-radius: 15px;
-    max-width: 175px;
-    text-align: center;
-  }
-  
-  #juego-perdido > div:hover, #juego-ganado > div:hover  {
-    background-color: blue;
-    color: aliceblue;
-  } 
-  #juego-ganado > div >a:visited {
-    text-decoration: none;
-    color: aliceblue;
-  }
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+  color: red;
+  margin: 215px auto 25px;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+#juego-perdido > div, #juego-ganado > div {
+  display: inline-block;
+  background-color: rgb(39, 38, 36);
+  color: aliceblue;
+  margin: 1%;
+  padding: 1%;
+  cursor: pointer;
+  border-radius: 15px;
+  max-width: 175px;
+  text-align: center;
+}
+
+#juego-perdido > div:hover, #juego-ganado > div:hover  {
+  background-color: blue;
+  color: aliceblue;
+} 
+
+#juego-ganado > div > a:visited {
+  text-decoration: none;
+  color: aliceblue;
+}
+
     
   .error {
     background-color: rgb(73, 73, 73);

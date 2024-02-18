@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function LanzarWin() {
     detenerCronometro();
     InterfazJuego.style.display = "none";
-    juegoGanado.style.display = "block";
+    juegoGanado.style.display = "flex";
 
     // Actualizar el objeto usuario
     if (usuarioActual) {
