@@ -1,57 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/src/icons/icon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style-003.css">
-    <link rel="stylesheet" href="/juegos/common-src/common.css">
+    <link rel="stylesheet" href="style-003.css" />
+    <link rel="stylesheet" href="/juegos/common-src/common.css" />
     <title>Sudoku</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="fondo-selector">
-        <div id="selector-dificultad">
-          <h4>Escoge la dificultad</h4>
-          <div id="grid-dificultad">
-            <div class="dificultad" id="Principiante">Principiante</div>
-            <div class="dificultad" id="Avanzado">Avanzado</div>
-            <div class="dificultad" id="Locura">Locura</div>
-          </div>
+      <div id="selector-dificultad">
+        <h4>Escoge la dificultad</h4>
+        <div id="grid-dificultad">
+          <div class="dificultad" id="Principiante">Principiante</div>
+          <div class="dificultad" id="Avanzado">Avanzado</div>
+          <div class="dificultad" id="Locura">Locura</div>
         </div>
+      </div>
     </div>
 
     <div id="juego-perdido">
-        <h3>Has fallado</h3>
-        <h4>¿ Qué te gustaría hacer ahora ?</h4>
-        <div id="guardar-salir">Guardar y Salir</div>
-        <div id="volver-ha-intentarlo">Volver a intentarlo</div>
+      <h3>Has fallado</h3>
+      <h4>¿ Qué te gustaría hacer ahora ?</h4>
+      <div id="guardar-salir">Guardar y Salir</div>
+      <div id="volver-ha-intentarlo">Volver a intentarlo</div>
     </div>
 
     <div id="juego-ganado">
-        <h3>Has pasado la prueba</h3>
-        <h4>¿ Qué te gustaría hacer ahora ?</h4>
-        <div><a href="/juegos/Game002/index-003.html">Siguiente Juego</a></div>
-        <div id="guardar-salir">Guardar y Salir</div>
-        <div id="volver-ha-intentarlo">Volver a intentarlo</div>
+      <h3>Has pasado la prueba</h3>
+      <h4>¿ Qué te gustaría hacer ahora ?</h4>
+      <div><a href="/juegos/Game002/index-003.html">Siguiente Juego</a></div>
+      <div id="guardar-salir">Guardar y Salir</div>
+      <div id="volver-ha-intentarlo">Volver a intentarlo</div>
     </div>
 
     <div id="interfaz-juego">
-        <div id="menu-superior">
-          <p id="cronometro"></p>
-          <p id="user"></p>
-          <p id="puntos-usuario">0</p>
-        </div>
-
-        <div id="juego">
-          <table id="tablero-sudoku">
-              <tbody>
-                  <!-- Aquí se generará la cuadrícula de Sudoku dinámicamente -->
-              </tbody>
-          </table>
+      <div id="menu-superior">
+        <p id="cronometro"></p>
+        <p id="user"></p>
+        <p id="puntos-usuario">0</p>
       </div>
-      
+
+      <div id="juego">
+        <div class="sample-text" id="sample">
+          <p>Los numeros son representados con simbolos</p>
+          <div class="numero-sample">
+            <img src="/juegos/Game003/img/1.png" alt="">
+            <p>1</p>
+          </div>
+          <div class="numero-sample">
+            <img src="/juegos/Game003/img/2.png" alt="">
+            <p>2</p>
+          </div>
+          <div class="numero-sample">
+            <img src="/juegos/Game003/img/3.png" alt="">
+
+            <p>3</p>
+          </div>
+          <div class="numero-sample">
+            <img src="/juegos/Game003/img/4.png" alt="">
+
+            <p>4</p>
+          </div>
+          <div class="numero-sample">
+            <img src="/juegos/Game003/img/5.png" alt="">
+
+            <p>5</p>
+          </div>
+          <div class="numero-sample">
+            <img src="/juegos/Game003/img/6.png" alt="">
+
+            <p>6</p>
+          </div>
+          <div class="numero-sample">
+            <img src="/juegos/Game003/img/7.png" alt="">
+            <p>7</p>
+          </div>
+          <div class="numero-sample">
+            <img src="/juegos/Game003/img/8.png" alt="">
+
+            <p>8</p>
+          </div>
+          <div class="numero-sample">
+            <img src="/juegos/Game003/img/9.png" alt="">
+
+            <p>9</p>
+          </div>
+        </div>
+        <table id="tablero-sudoku">
+          <tbody>
+            <!-- Aquí se generará la cuadrícula de Sudoku dinámicamente -->
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <script src="script-003.js"></script>
-</body>
+  </body>
 </html>

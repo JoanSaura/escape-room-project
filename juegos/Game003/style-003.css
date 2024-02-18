@@ -1,31 +1,47 @@
-#sudoku-board {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    gap: 2px;
-    background-color: aliceblue;
-    margin: 20px;
-  }
-  
-  .row,.row-sample {
-    display: flex;
-  }
-  
-  .cell {
-    flex: 1;
-    text-align: center;
-    border: 1px solid #000;
-    font-size: 1.5em;
-    padding: 5px;
-    cursor: pointer;
-  }
-  
-  /* Estilos para resaltar las celdas según el diseño del Sudoku */
-  .cell:nth-child(3n), .cell:nth-child(3n-1) {
-    border-right: 2px solid #000;
-  }
-  
-  .row:nth-child(3n), .row:nth-child(3n-1) {
-    border-bottom: 2px solid #000;
-  }
-  
+body {
+  background-color: black;
+}
+#tablero-sudoku {
+  border: 2px solid black;
+  padding: 5px;
+  justify-content: center;
+  background-color: rgb(87, 8, 8);
+}
+
+#tablero-sudoku > tr > td {
+  border: 2px solid black;
+  background-color: aliceblue;
+  padding: 25px;
+}
+
+#sample {
+  text-align: center;
+  background-color: bisque;
+}
+.sample-text {
+  font-size: 20px;
+}
+.numero-sample {
+  display: inline-block; 
+  border: 1 solid black;
+}
+.numero-vacio {
+  background-color: rgb(159, 192, 181);
+  cursor: pointer;
+}
+
+.oculto-visualmente {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.cassila-acertada {
+  border: 2px solid rgb(38, 202, 5);
+  background-color: aliceblue;
+}

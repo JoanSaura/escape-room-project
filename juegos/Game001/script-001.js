@@ -224,12 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
     }
   }
-  
-  
 
-  GuardarYSalir.addEventListener("click", function () {
-    
-  });
 
   //Recargue la pagina para volver a interntarlo 
   VolverHaIntentarlo.addEventListener("click", function () {
