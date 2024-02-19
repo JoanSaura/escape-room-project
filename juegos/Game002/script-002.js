@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const VolverHaIntentarlo = document.querySelectorAll("#volver-ha-intentarlo");
    //Capturamos los elementos del DOM
    const usuarioActual = localStorage.getItem("usuarioActual");
-   if (usuarioActual) {
+  if (usuarioActual) {
      console.log("Usuario cargado:", usuarioActual);
    } else {
      console.log("No hay usuario cargado. Iniciar sesión para jugar.");

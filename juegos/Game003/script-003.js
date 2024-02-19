@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const MinutosRestantes = document.getElementById('minutos-restantes');
   //Capturamos los elementos del DOM
   const usuarioActual = localStorage.getItem("usuarioActual");
-  if (usuarioActual) {
+  if (usuarioActual == null) {
     console.log("Usuario cargado:", usuarioActual);
   } else {
-    console.log("No hay usuario cargado. Iniciar sesión para jugar.");
+    console.log("Usuario cargado:", usuarioActual);
   }
   //Variables globales
   let tiempoTranscurrido = 0;
