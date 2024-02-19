@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const DificultadFacil = document.getElementById("Principiante");
   const DificultadMedia = document.getElementById("Avanzado");
   const DificultadDificil = document.getElementById("Locura");
+  const nombreUser = document.getElementById("user");
   const cronometro = document.getElementById("cronometro");
   const juegoGanado = document.getElementById("juego-ganado");
   const juegoPerdido = document.getElementById("juego-perdido");
@@ -15,10 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const MinutosRestantes = document.getElementById('minutos-restantes');
   //Capturamos los elementos del DOM
   const usuarioActual = localStorage.getItem("usuarioActual");
-  if (usuarioActual == null) {
+  if (usuarioActual) {
     console.log("Usuario cargado:", usuarioActual);
-  } else {
-    console.log("Usuario cargado:", usuarioActual);
+  } else if(usuarioActual == null) {
+    console.log("No se ha cargado ningun usuario");
   }
   //Variables globales
   let tiempoTranscurrido = 0;
@@ -276,5 +277,5 @@ document.addEventListener("DOMContentLoaded", function () {
     generarTableroSudoku();
   });
 
-  localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
+  nombreUser.textContent = `${usuarioActual}`;
 });
