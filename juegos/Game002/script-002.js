@@ -159,12 +159,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Agrega un evento de clic para cada tecla del teclado
-  teclasJuego.forEach((tecla) => {
-    tecla.addEventListener("click", function () {
-      comprobarLetra(tecla.textContent, tecla);
-    });
+// Agrega un evento de clic para cada tecla del teclado
+teclasJuego.forEach((tecla) => {
+  tecla.addEventListener("click", function handleClick() {
+    comprobarLetra(tecla.textContent, tecla);
+    // Desactiva el evento de clic después de comprobar la letra
+    tecla.removeEventListener("click", handleClick);
   });
+});
+
+// ...
+
 
   //Crear el numero de errores maximo
   function generarErrores(MaxErrores) {
