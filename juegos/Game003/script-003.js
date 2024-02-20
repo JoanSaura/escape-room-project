@@ -13,24 +13,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const InterfazJuego = document.getElementById("interfaz-juego");
   const PuntosUser = document.getElementById("puntos-usuario");
   const tableroSudoku = document.getElementById("tablero-sudoku");
-  const MinutosRestantes = document.getElementById('minutos-restantes');
-  //Capturamos los elementos del DOM
-  //Cargamos los usuario
-  const usuarioActual = localStorage.getItem("usuarioActual");
+  const MinutosRestantes = document.getElementById("minutos-restantes");
+  // Cargamos los usuarios
+  const usuarioActual = obtenerUsuarioActual();
+  // Mostrar nombre del usuario o Anonimo si no hay usuario actual
   if (usuarioActual) {
-    // Si hay un usuario cargado, muestra solo el nombre
-    console.log("Usuario cargado:", usuarioActual);
-    nombreUser.textContent = usuarioActual;
-  } else {
-    // Guarda el usuario anónimo en el almacenamiento local
-    console.log("Jugando de manera anonima");
-    nombreUser.textContent = "Anonimo";
+    mostrarNombreUsuario(usuarioActual);
+    console.log(usuarioActual);
   }
   //Variables globales
   let tiempoTranscurrido = 0;
   let intervalo;
   let puntos = 0;
   let dificultadElegida = "";
+
+  // Función para mostrar el nombre del usuario
+  function mostrarNombreUsuario(usuario) {
+    nombreUser.textContent = usuario.nombre;
+  }
+
+  // Obtener usuario actual del almacenamiento local
+  function obtenerUsuarioActual() {
+    const usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
+    return usuarioActual || "Anonimo";
+  }
+
   // Función para mostrar el interfaz de juego
   function mostrarInterfazJuego() {
     InterfazJuego.style.display = "block";
@@ -188,24 +195,24 @@ document.addEventListener("DOMContentLoaded", function () {
     cronometro.textContent = `${horas < 10 ? "0" + horas : horas}:${
       minutos < 10 ? "0" + minutos : minutos
     }:${segundos < 10 ? "0" + segundos : segundos}`;
-  
+
     // Verificar límite de tiempo según la dificultad
     switch (dificultadElegida) {
       case "facil":
-        MinutosRestantes.innerText = "Tienes 4 minutos"
-        if (minutos >= 4) {
-          LanzarGameOver();
-        }
-        break;
-      case "normal":
-        MinutosRestantes.innerText = "Tienes 5 minutos"
+        MinutosRestantes.innerText = "Tienes 4 minutos";
         if (minutos >= 5) {
           LanzarGameOver();
         }
         break;
-      case "dificil":
-        MinutosRestantes.innerText = "Tienes 6 minutos"
+      case "normal":
+        MinutosRestantes.innerText = "Tienes 5 minutos";
         if (minutos >= 6) {
+          LanzarGameOver();
+        }
+        break;
+      case "dificil":
+        MinutosRestantes.innerText = "Tienes 6 minutos";
+        if (minutos >= 7) {
           LanzarGameOver();
         }
         break;
@@ -231,34 +238,42 @@ document.addEventListener("DOMContentLoaded", function () {
     detenerCronometro();
     InterfazJuego.style.display = "none";
     juegoGanado.style.display = "flex";
-
-    // Actualizar el objeto usuario
-    if (usuarioActual && usuarioActual.Juego3 && usuarioActual.Juego3.length > 0) {
-      const juegoGanado = {
-        dificultad: dificultadElegida,
-        puntos: puntos,
-        superado: true,
-        tiempo: tiempoTranscurrido
-      };
-    
-      // Identificar y actualizar el juego según la dificultad
-      switch (dificultadElegida) {
-        case "facil":
-          usuarioActual.Juego3[0] = juegoGanado;
-          break;
-        case "normal":
-          usuarioActual.Juego3[0] = juegoGanado;
-          break;
-        case "dificil":
-          usuarioActual.Juego3[0] = juegoGanado;
-          break;
-        // Puedes agregar más casos según la cantidad de juegos que tengas
+  
+      // Actualizar el estado del juego en el usuario actual
+      if (usuarioActual) {
+        const juegoGanado = {
+          dificultad: dificultadElegida,
+          puntos: puntos,
+          superado: true,
+          tiempo: tiempoTranscurrido,
+        };
+        actualizarJuego(usuarioActual, dificultadElegida, juegoGanado);
+        localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
       }
-    
-      localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
+    }
+  //Actualiza la informacion de los datos del juego que tiene el propio usuario
+  function actualizarJuego(usuario, dificultad, nuevoEstado) {
+    if (usuario && usuario.juegos) {
+      // Verificar si el juego para la dificultad ya existe
+      if (usuario.juegos[`Juego3`]) {
+        const juego = usuario.juegos[`Juego3`];
+        // Si se encuentra el juego, actualizar sus datos directamente
+        juego.dificultad = dificultad;
+        juego.tiempo = nuevoEstado.tiempo;
+        juego.puntos = nuevoEstado.puntos;
+        juego.superado = nuevoEstado.superado;
+      } else {
+        // Si no se encuentra el juego, crear un nuevo objeto de juego y agregarlo al usuario
+        usuario.juegos[`Juego3`] = {
+          dificultad: dificultad,
+          tiempo: nuevoEstado.tiempo,
+          puntos: nuevoEstado.puntos,
+          superado: nuevoEstado.superado
+        };
+      }
+      console.log("Usuario después de la actualización:", usuario);
     }
   }
-  
 
   // Eventos click con generación de cartas y errores según la dificultad
   DificultadFacil.addEventListener("click", function () {
@@ -284,5 +299,4 @@ document.addEventListener("DOMContentLoaded", function () {
     iniciarCronometro();
     generarTableroSudoku();
   });
-
 });
