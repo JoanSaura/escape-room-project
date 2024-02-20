@@ -15,11 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const tableroSudoku = document.getElementById("tablero-sudoku");
   const MinutosRestantes = document.getElementById('minutos-restantes');
   //Capturamos los elementos del DOM
+  //Cargamos los usuario
   const usuarioActual = localStorage.getItem("usuarioActual");
+  console.log(usuarioActual.Juego2[0].superado);
   if (usuarioActual) {
+    // Si hay un usuario cargado, muestra solo el nombre
     console.log("Usuario cargado:", usuarioActual);
-  } else if(usuarioActual == null) {
-    console.log("No se ha cargado ningun usuario");
+    nombreUser.textContent = usuarioActual;
+  } else {
+    // Guarda el usuario anónimo en el almacenamiento local
+    console.log("Jugando de manera anonima");
+    nombreUser.textContent = "Anonimo";
   }
   //Variables globales
   let tiempoTranscurrido = 0;
@@ -228,14 +234,14 @@ document.addEventListener("DOMContentLoaded", function () {
     juegoGanado.style.display = "flex";
 
     // Actualizar el objeto usuario
-    if (usuarioActual) {
+    if (usuarioActual && usuarioActual.Juego3 && usuarioActual.Juego3.length > 0) {
       const juegoGanado = {
         dificultad: dificultadElegida,
         puntos: puntos,
         superado: true,
-        tiempo: tiempoTranscurrido,
+        tiempo: tiempoTranscurrido
       };
-
+    
       // Identificar y actualizar el juego según la dificultad
       switch (dificultadElegida) {
         case "facil":
@@ -247,7 +253,10 @@ document.addEventListener("DOMContentLoaded", function () {
         case "dificil":
           usuarioActual.Juego3[0] = juegoGanado;
           break;
+        // Puedes agregar más casos según la cantidad de juegos que tengas
       }
+    
+      localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
     }
   }
   
@@ -277,5 +286,4 @@ document.addEventListener("DOMContentLoaded", function () {
     generarTableroSudoku();
   });
 
-  nombreUser.textContent = `${usuarioActual}`;
 });

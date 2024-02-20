@@ -16,13 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuVictoria = document.getElementById("juego-ganado");
   const juegoPerdido = document.getElementById("juego-perdido");
   const VolverHaIntentarlo = document.querySelectorAll("#volver-ha-intentarlo");
-   //Capturamos los elementos del DOM
-   const usuarioActual = localStorage.getItem("usuarioActual");
+
+  //Cargamos los usuarios
+  const usuarioActual = localStorage.getItem("usuarioActual");
   if (usuarioActual) {
-     console.log("Usuario cargado:", usuarioActual);
-   } else {
-     console.log("No hay usuario cargado. Iniciar sesión para jugar.");
-   }
+    // Si hay un usuario cargado, muestra solo el nombre
+    console.log("Usuario cargado:", usuarioActual);
+    nombreUser.textContent = usuarioActual;
+  } else {
+    // Guarda el usuario anónimo en el almacenamiento local
+    console.log("Jugando de manera anonima");
+    nombreUser.textContent = "Anonimo";
+  }
   //Variables globales
   let tiempoTranscurrido = 0;
   let intervalo;
@@ -193,32 +198,32 @@ teclasJuego.forEach((tecla) => {
     InterfazJuego.style.display = "none";
     menuVictoria.style.display = "flex";
     
-    // Actualizar el objeto usuario
-    if (usuarioActual) {
-      const juegoGanado = {
-        dificultad: dificultadElegida,
-        puntos: puntos,
-        superado: true,
-        tiempo: tiempoTranscurrido
-      };
-  
-      // Identificar y actualizar el juego según la dificultad
-      switch (dificultadElegida) {
-        case "facil":
-          usuarioActual.Juego2[0] = juegoGanado;
-          break;
-        case "normal":
-          usuarioActual.Juego2[0] = juegoGanado;
-          break;
-        case "dificil":
-          usuarioActual.Juego2[0] = juegoGanado;
-          break;
-        // Puedes agregar más casos según la cantidad de juegos que tengas
+      // Actualizar el objeto usuario
+      if (usuarioActual && usuarioActual.Juego2 && usuarioActual.Juego2.length > 0) {
+        const juegoGanado = {
+          dificultad: dificultadElegida,
+          puntos: puntos,
+          superado: true,
+          tiempo: tiempoTranscurrido
+        };
+      
+        // Identificar y actualizar el juego según la dificultad
+        switch (dificultadElegida) {
+          case "facil":
+            usuarioActual.Juego2[0] = juegoGanado;
+            break;
+          case "normal":
+            usuarioActual.Juego2[0] = juegoGanado;
+            break;
+          case "dificil":
+            usuarioActual.Juego2[0] = juegoGanado;
+            break;
+          // Puedes agregar más casos según la cantidad de juegos que tengas
+        }
+      
+        localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
       }
-  
-      localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
     }
-  }
   //Recargue la pagina para volver a interntarlo
  VolverHaIntentarlo.forEach(button => {
   button.addEventListener("click", function () {
@@ -257,5 +262,4 @@ teclasJuego.forEach((tecla) => {
     const palabra = seleccionarPalabra(dificultadElegida);
     generarLetrasPalabra(palabra);
   });
-  nombreUser.textContent = `${usuarioActual}`
 });
