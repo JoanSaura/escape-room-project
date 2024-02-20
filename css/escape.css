@@ -1,0 +1,14 @@
+
+body {
+    background-image: url(/src/img/Caja.jpg);
+}
+#nota {
+    background-color: aliceblue;
+    margin: 125px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#contra {
+    background-color: darkgray;
+}
