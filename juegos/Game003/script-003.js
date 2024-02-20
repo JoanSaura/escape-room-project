@@ -238,19 +238,28 @@ document.addEventListener("DOMContentLoaded", function () {
     detenerCronometro();
     InterfazJuego.style.display = "none";
     juegoGanado.style.display = "flex";
-  
-      // Actualizar el estado del juego en el usuario actual
-      if (usuarioActual) {
-        const juegoGanado = {
-          dificultad: dificultadElegida,
-          puntos: puntos,
-          superado: true,
-          tiempo: tiempoTranscurrido,
-        };
-        actualizarJuego(usuarioActual, dificultadElegida, juegoGanado);
-        localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
-      }
+
+    // Actualizar el estado del juego en el usuario actual
+    if (usuarioActual) {
+      const juegoGanado = {
+        dificultad: dificultadElegida,
+        puntos: puntos,
+        superado: true,
+        tiempo: tiempoTranscurrido,
+      };
+      actualizarJuego(usuarioActual, dificultadElegida, juegoGanado);
+      localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
     }
+    const todosSuperados =
+      usuarioActual.juegos["Juego1"].superado &&
+      usuarioActual.juegos["Juego2"].superado &&
+      usuarioActual.juegos["Juego3"].superado;
+
+    if (todosSuperados) {
+      // Redirigir a otra página
+      window.location.href = "/htmls/scape.html";
+    }
+  }
   //Actualiza la informacion de los datos del juego que tiene el propio usuario
   function actualizarJuego(usuario, dificultad, nuevoEstado) {
     if (usuario && usuario.juegos) {
@@ -268,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
           dificultad: dificultad,
           tiempo: nuevoEstado.tiempo,
           puntos: nuevoEstado.puntos,
-          superado: nuevoEstado.superado
+          superado: nuevoEstado.superado,
         };
       }
       console.log("Usuario después de la actualización:", usuario);
