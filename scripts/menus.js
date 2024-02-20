@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Elementos del menú principal
-  const nuevoJuegoBtn = document.getElementById('nuevo-juego');
+  const nuevoJuegoBtn = document.getElementById("nuevo-juego");
   const botonUsuarios = document.querySelector(".gestion-usuarios");
   const menuUsuarios = document.getElementById("menu-usuarios");
   const mostrarCrearUsuarioBtn = document.getElementById("crear-usuario-btn");
@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const nombreUsuarioInput = document.getElementById("nombre-usuario");
   const contraseñaInput = document.getElementById("contrasena-usuario");
   // Elementos de inicio de sesión
-  const BtninicioSesion = document.getElementById('inicio-sesion-btn');
-  const cerrarInicioSesion = document.getElementById('cerrar-inicio-sesion');
-  const menuInicioSesion = document.getElementById('iniciar-sesion-menu');
+  const BtninicioSesion = document.getElementById("inicio-sesion-btn");
+  const cerrarInicioSesion = document.getElementById("cerrar-inicio-sesion");
+  const menuInicioSesion = document.getElementById("iniciar-sesion-menu");
 
   let popupVisible = null;
   // Para mostrar los diferentes pop-ups
@@ -62,13 +62,14 @@ document.addEventListener("DOMContentLoaded", function () {
   guardarUsuarioBtn.addEventListener("click", function () {
     const nombreUsuario = nombreUsuarioInput.value;
     const contraseña = contraseñaInput.value;
-  
+
     // Verifica si el usuario ya existe en el almacenamiento local
-    const usuariosGuardados = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const usuariosGuardados =
+      JSON.parse(localStorage.getItem("usuarios")) || [];
     const usuarioExistente = usuariosGuardados.find(
       (u) => u.nombre === nombreUsuario
     );
-  
+
     if (usuarioExistente) {
       alert("El usuario ya existe. Por favor, elige otro nombre de usuario.");
     } else {
@@ -81,37 +82,31 @@ document.addEventListener("DOMContentLoaded", function () {
             dificultad: null,
             tiempo: null,
             puntos: null,
-            superado: false
+            superado: false,
           },
           Juego2: {
             dificultad: null,
             tiempo: null,
             puntos: null,
-            superado: false
+            superado: false,
           },
           Juego3: {
             dificultad: null,
             tiempo: null,
             puntos: null,
-            superado: false
+            superado: false,
           },
-          Juego4: {
-            dificultad: null,
-            tiempo: null,
-            puntos: null,
-            superado: false
-          }
-          }
+        },
       };
-  
+
       if (!nuevoUsuario.nombre || nuevoUsuario.nombre.trim() === "") {
         alert("Inserte un nombre, por favor");
       }
-  
+
       usuariosGuardados.push(nuevoUsuario);
       localStorage.setItem("usuarios", JSON.stringify(usuariosGuardados));
       localStorage.setItem("usuarioActual", JSON.stringify(nuevoUsuario));
-  
+
       // Cierra el formulario después de guardar
       crearUsuarioDiv.style.display = "none";
       alert("Usuario creado exitosamente.");
@@ -122,7 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Mostrar Menu de inicio de sesion
   BtninicioSesion.addEventListener("click", function () {
     // Obtener la lista de usuarios desde el almacenamiento local
-    const usuariosGuardados = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const usuariosGuardados =
+      JSON.parse(localStorage.getItem("usuarios")) || [];
     // Obtener el elemento de la lista de usuarios
     const listaUsuarios = document.getElementById("lista-usuarios");
     // Limpiar la lista antes de agregar los usuarios
@@ -147,22 +143,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // Mostrar el menú de inicio de sesión
     mostrarPopup(menuInicioSesion);
   });
-  
+
   // Cerrar Inicio de sesion
   cerrarInicioSesion.addEventListener("click", function () {
     cerrarPopup();
   });
 
-  nuevoJuegoBtn.addEventListener('click', function () {
+  nuevoJuegoBtn.addEventListener("click", function () {
     // Obtener el usuario actual del localStorage
     const usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
     // Verificar si hay un usuario elegido
-    if (usuarioActual === null || usuarioActual === "No hay ninguna sesión activa") {
+    if (
+      usuarioActual === null ||
+      usuarioActual === "No hay ninguna sesión activa"
+    ) {
       alert("No se puede jugar sin ningún usuario elegido");
     } else {
       // Redirigir a la página del juego
-      window.location.href = '/juegos/Game001/index-001.html';
+      window.location.href = "/juegos/Game001/index-001.html";
     }
-  
   });
 });
