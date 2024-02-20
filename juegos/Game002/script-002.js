@@ -222,8 +222,8 @@ teclasJuego.forEach((tecla) => {
     location.reload();
   });
 });
-
-function actualizarJuego(usuario, dificultad, nuevoEstado) {
+  //Actualiza la informacion de los datos del juego que tiene el propio usuario
+  function actualizarJuego(usuario, dificultad, nuevoEstado) {
   if (usuario && usuario.juegos) {
     // Verificar si el juego para la dificultad ya existe
     if (usuario.juegos[`Juego2`]) {
