@@ -199,19 +199,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Verificar límite de tiempo según la dificultad
     switch (dificultadElegida) {
       case "facil":
-        MinutosRestantes.innerText = "Tienes 4 minutos";
+        MinutosRestantes.innerText = "Tienes 5 minutos";
         if (minutos >= 5) {
           LanzarGameOver();
         }
         break;
       case "normal":
-        MinutosRestantes.innerText = "Tienes 5 minutos";
+        MinutosRestantes.innerText = "Tienes 6 minutos";
         if (minutos >= 6) {
           LanzarGameOver();
         }
         break;
       case "dificil":
-        MinutosRestantes.innerText = "Tienes 6 minutos";
+        MinutosRestantes.innerText = "Tienes 7 minutos";
         if (minutos >= 7) {
           LanzarGameOver();
         }
