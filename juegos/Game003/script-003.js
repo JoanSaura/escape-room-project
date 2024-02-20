@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //Capturamos los elementos del DOM
   //Cargamos los usuario
   const usuarioActual = localStorage.getItem("usuarioActual");
-  console.log(usuarioActual.Juego2[0].superado);
   if (usuarioActual) {
     // Si hay un usuario cargado, muestra solo el nombre
     console.log("Usuario cargado:", usuarioActual);

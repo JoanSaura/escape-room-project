@@ -14,22 +14,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuGameOver = document.getElementById("juego-perdido");
   const menuVictoria = document.getElementById("juego-ganado");
   const VolverHaIntentarlo = document.querySelectorAll("#volver-ha-intentarlo");
-
+  //Variables globales
   let tiempoTranscurrido = 0;
   let intervalo;
   let dificultadElegida = "";
   let puntos = 0;
-  const usuarioActual = obtenerUsuarioActual();
-  // Mostrar nombre del usuario o Anonimo si no hay usuario actual
-  if (usuarioActual) {
-    mostrarNombreUsuario(usuarioActual);
-  } else {
-    nombreUser.textContent = "Anonimo";
-  }
-  console.log(usuarioActual);
-
   let cartasSeleccionadas = [];
   let cantidadErrores = 0;
+  //Capturamos el usuario si esta previamente dado de alta
+  const usuarioActual = obtenerUsuarioActual();
+  // Mostrar nombre del usuario
+  if (usuarioActual) {
+    mostrarNombreUsuario(usuarioActual);
+    console.log(usuarioActual);
+  }
 
   // Función para mostrar el nombre del usuario
   function mostrarNombreUsuario(usuario) {
@@ -39,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Obtener usuario actual del almacenamiento local
   function obtenerUsuarioActual() {
     const usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
-    return usuarioActual || null;
+    return usuarioActual || "Jugando de forma anonima";
   }
 
   // Mostrar la interfaz del juego
@@ -79,7 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const horas = Math.floor(tiempoTranscurrido / 3600);
     const minutos = Math.floor((tiempoTranscurrido % 3600) / 60);
     const segundos = tiempoTranscurrido % 60;
-    cronometro.textContent = `${horas < 10 ? "0" + horas : horas}:${minutos < 10 ? "0" + minutos : minutos}:${segundos < 10 ? "0" + segundos : segundos}`;
+    cronometro.textContent = `${horas < 10 ? "0" + horas : horas}:${
+      minutos < 10 ? "0" + minutos : minutos
+    }:${segundos < 10 ? "0" + segundos : segundos}`;
   }
 
   // Nombres de las imágenes del juego de memoria
@@ -109,7 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
     cartas.forEach((carta) => {
       // Evento al hacer clic en una carta
       carta.addEventListener("click", function () {
-        if (!this.classList.contains("acertada") && cartasSeleccionadas.length < 2) {
+        if (
+          !this.classList.contains("acertada") &&
+          cartasSeleccionadas.length < 2
+        ) {
           cartasSeleccionadas.push(this);
           this.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
 
@@ -121,7 +124,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Evento al quitar el mouse de una carta
       carta.addEventListener("mouseleave", function () {
-        if (this.style.backgroundImage.includes("Reverso.png") && !this.classList.contains("acertada")) {
+        if (
+          this.style.backgroundImage.includes("Reverso.png") &&
+          !this.classList.contains("acertada")
+        ) {
           this.style.backgroundImage = `url('img/Reverso.png')`;
         }
       });
@@ -131,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Verificar las cartas seleccionadas por el jugador
   function verificarCartasSeleccionadas() {
     const [carta1, carta2] = cartasSeleccionadas;
-  
+
     if (carta1.dataset.imagen == carta2.dataset.imagen) {
       cartasSeleccionadas.forEach((carta) => {
         carta.classList.add("acertada");
@@ -142,26 +148,29 @@ document.addEventListener("DOMContentLoaded", function () {
       cantidadErrores++;
       erroresContainer.children[cantidadErrores - 1].classList.add("errado");
     }
-  
+
     // Comprobar condiciones de victoria o derrota
-    if ((dificultadElegida == "facil" && puntos == 100) || 
-        (dificultadElegida == "medio" && puntos == 160) ||
-        (dificultadElegida == "dificil" && puntos == 200)) {
-      console.log("Victoria");
+    if (
+      (dificultadElegida == "facil" && puntos == 100) ||
+      (dificultadElegida == "medio" && puntos == 160) ||
+      (dificultadElegida == "dificil" && puntos == 200)
+    ) {
       lanzarWin();
     }
-  
-    if ((dificultadElegida == "facil" && cantidadErrores == 5) || 
-        (dificultadElegida == "medio" && cantidadErrores == 4) ||
-        (dificultadElegida == "dificil" && cantidadErrores == 3)) {
+
+    if (
+      (dificultadElegida == "facil" && cantidadErrores == 5) ||
+      (dificultadElegida == "medio" && cantidadErrores == 4) ||
+      (dificultadElegida == "dificil" && cantidadErrores == 3)
+    ) {
       lanzarGameOver();
     }
-  
+
     // Restablecer las cartas seleccionadas
     cartasSeleccionadas.forEach((carta) => {
       carta.style.backgroundImage = `url('img/Reverso.png')`;
     });
-  
+
     cartasSeleccionadas = [];
   }
   // Generar el tablero de cartas y errores
@@ -172,7 +181,8 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < numCartas; i++) {
       const carta = document.createElement("div");
       carta.className = "carta";
-      carta.dataset.imagen = i < paresImagenes.length ? paresImagenes[i] : "Reverso.png";
+      carta.dataset.imagen =
+        i < paresImagenes.length ? paresImagenes[i] : "Reverso.png";
       carta.style.backgroundImage = `url('img/Reverso.png')`;
       tablero.appendChild(carta);
     }
@@ -182,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
       error.className = "error";
       erroresContainer.appendChild(error);
     }
-
     agregarEventosCartas();
   }
 
@@ -212,6 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  //Actualiza la informacion de los datos del juego que tiene el propio usuario
   function actualizarJuego(usuario, dificultad, nuevoEstado) {
     if (usuario && usuario.juegos) {
       // Verificar si el juego para la dificultad ya existe
@@ -228,16 +238,15 @@ document.addEventListener("DOMContentLoaded", function () {
           dificultad: dificultad,
           tiempo: nuevoEstado.tiempo,
           puntos: nuevoEstado.puntos,
-          superado: nuevoEstado.superado
+          superado: nuevoEstado.superado,
         };
       }
       console.log("Usuario después de la actualización:", usuario);
     }
   }
-  
-  
+
   // Agregar eventos al botón de volver a intentarlo
-  VolverHaIntentarlo.forEach(button => {
+  VolverHaIntentarlo.forEach((button) => {
     button.addEventListener("click", function () {
       location.reload();
     });
