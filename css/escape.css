@@ -1,30 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
   background-image: url(/src/img/Caja.jpg);
+  transition: background 1.5s ease;
 }
+
 #nota {
   background-color: aliceblue;
   margin: 125px;
   padding: 8px;
   border-radius: 10px;
   font-size: 19px;
+  transition: background 1.5s ease;
 }
 
 #contra {
-  margin-left: 725px;
-  margin-right: 925px;
-  margin-top: 125px;
+  margin: 125px auto;
   display: none;
   align-items: center;
   justify-content: center;
   padding: 15px;
   border-radius: 20px;
 }
+
 #contra > .contenedor-numero {
   border: 2px solid black;
 }
+
 #contraseña {
   color: red;
 }
+
 .subir-numero,
 .bajar-numero {
   background-color: rgb(114, 34, 50);
@@ -33,16 +39,60 @@ body {
   padding: 15px;
   text-align: center;
 }
+
 .numero {
   text-align: center;
   padding: 25px;
   color: wheat;
   background-color: rgb(26, 18, 18);
 }
+
 #comprobacion {
   margin-left: 15px;
   border-radius: 24px;
   background-color: tomato;
   color: aliceblue;
   padding: 12px;
+}
+
+
+
+.sueño {
+  background-image: url(/src/img/fondo\ sueño.jpg);
+}
+#fin {
+  background-color: aliceblue;
+  opacity: 0;
+  padding: 20px;
+  transition: opacity 1.5s ease, background-color 1.5s ease; 
+  margin: 50px;
+}
+#fin p {
+  font-size: 20px;
+  font-family: Noto Serif;
+}
+
+#fin.mostrar {
+  opacity: 1;
+}
+
+#fin > button {
+  background-color: black;
+  color: aliceblue;
+  padding: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#fin > button > a {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+#fin > button:hover {
+  background-color: rgb(114, 34, 50);
+}
+
+#fin > button > a:visited {
+  color: aliceblue;
 }
