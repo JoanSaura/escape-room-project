@@ -10,12 +10,12 @@ body {
 }
 
 #contra {
-  margin-left: 825px;
-  margin-right: 825px;
-  display: flex;
+  margin-left: 725px;
+  margin-right: 925px;
+  margin-top: 125px;
+  display: none;
   align-items: center;
   justify-content: center;
-  background-color: darkgray;
   padding: 15px;
   border-radius: 20px;
 }
@@ -42,4 +42,7 @@ body {
 #comprobacion {
   margin-left: 15px;
   border-radius: 24px;
+  background-color: tomato;
+  color: aliceblue;
+  padding: 12px;
 }
