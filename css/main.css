@@ -221,3 +221,11 @@ body {
   max-width: 720px;
   border-radius: 2000px;
 }
+#InteractMusica {
+  background-color: rgb(100, 36, 36);
+  padding: 15px;
+  border-radius: 25px;
+  color: aliceblue;
+  border: 2px solid white;
+  cursor: pointer;
+}

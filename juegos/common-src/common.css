@@ -130,4 +130,5 @@ body {
   background-color: black;
   color: white;
   border-radius: 15px;
+  cursor: pointer;
 }

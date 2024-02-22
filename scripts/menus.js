@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mostrarCrearUsuarioBtn = document.getElementById("crear-usuario-btn");
   const crearUsuarioDiv = document.getElementById("crear-usuario");
   const usuarioRegistradoText = document.getElementById("user");
+  const InteractMusica = document.getElementById('InteractMusica');
   // Elementos de Crear usuario
   const cerrarCrearUsuarioBtn = document.getElementById("cerrar-crear-usuario");
   const cerrarMenuUsuarios = document.getElementById("cerrar-menu-usuarios");
@@ -24,6 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
   Exitoso.src = '/src/sfx/Correcto.mp3';
   let Pop = new Audio();
   Pop.src = '/src/sfx/Carta.mp3';
+  let Musica =  new Audio();
+  Musica.src = '/src/bgm/Musica Menu.mp3';
+  Musica.loop = true;
    // Para mostrar los diferentes pop-ups
   let popupVisible = null;
   function mostrarPopup(popup) {
@@ -176,4 +180,15 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "/juegos/Game001/index-001.html";
     }
   });
+  Musica.play();
+    // Para interactuar con la canción
+InteractMusica.addEventListener('click', function () {
+  if (InteractMusica.textContent === 'Silenciar música') {
+      Musica.muted = true;  // Silenciar la música
+      InteractMusica.textContent = 'Volver a poner música';
+  } else {
+      Musica.muted = false;  // Volver a reproducir la música
+      InteractMusica.textContent = 'Silenciar';
+  }
+});
 });
