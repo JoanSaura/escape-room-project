@@ -11,9 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const divFin = document.getElementById("fin");
   //Declaramos los sonidos
   let InteractCasilla = new Audio();
-  InteractCasilla.src = '/src/sfx/Casilla.mp3';
+  InteractCasilla.src = '/src/sfx/Carta.mp3';
   let QuitarNota = new Audio();
   QuitarNota.src = '/src/sfx/Correcto.mp3';
+  let musicaSueño = new Audio();
+  musicaSueño.src = '/src/bgm/Sueño.mp3'
   //Declaramos la contraseña
   const contrasena = Array.from(
     { length: 3 },
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(function () {
         // Transición a fondo sueño
         body.classList.add("sueño");
-
+        musicaSueño.play();
         // Mostrar el div final después de unos segundos
         setTimeout(function () {
           divFin.classList.add("mostrar");

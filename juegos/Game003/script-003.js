@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const InterfazJuego = document.getElementById("interfaz-juego");
   const PuntosUser = document.getElementById("puntos-usuario");
   const tableroSudoku = document.getElementById("tablero-sudoku");
+  const InteractMusica = document.getElementById('mutear');
   const MinutosRestantes = document.getElementById("minutos-restantes");
   // Cargamos los usuarios
   const usuarioActual = obtenerUsuarioActual();
@@ -22,18 +23,29 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(usuarioActual);
   }
   //Declaramos los sonidos
+  let Selected = new Audio();
+  Selected.src = '/src/sfx/Aceptado.mp3';
   let casillaSelecionada = new Audio();
   casillaSelecionada.src = '/src/sfx/Casilla.mp3';
+  let Fallo = new Audio();
+  Fallo.src = '/src/sfx/Fallo.mp3';
   let casillaCorrecta = new Audio();
   casillaCorrecta.src = '/src/sfx/Correcto.mp3';
   let WinSound = new Audio();
   WinSound.src = '/src/sfx/Victoria.mp3';
+  let DefeatSound = new Audio();
+  DefeatSound.src = '/src/sfx/Derrota.mp3';
+  let Musica = new Audio();
+  Musica.src = '/src/bgm/Musica3.mp3';
+  Musica.loop = true;
+ 
   //Variables globales
   let tiempoTranscurrido = 0;
   let intervalo;
   let puntos = 0;
   let dificultadElegida = "";
 
+ 
   // Función para mostrar el nombre del usuario
   function mostrarNombreUsuario(usuario) {
     nombreUser.textContent = usuario.nombre;
@@ -190,11 +202,15 @@ document.addEventListener("DOMContentLoaded", function () {
         casillaCorrecta.play();
         puntos += 5;
         PuntosUser.innerHTML = `${puntos}`;
+      }
+      else {
+        Fallo.play();
+      }
         const celdasOcultas = document.querySelectorAll(".numero-vacio");
         if (celdasOcultas.length === 0) {
           LanzarWin();
         }
-      }
+      
     }
   }
 
@@ -239,6 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Mostrar pantalla de derrota
   function LanzarGameOver() {
+    DefeatSound.play();
     detenerCronometro();
     InterfazJuego.style.display = "none";
     juegoPerdido.style.display = "flex";
@@ -295,8 +312,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Para interactuar con la canción
+InteractMusica.addEventListener('click', function () {
+  if (InteractMusica.textContent === 'Silenciar') {
+      Musica.muted = true;  // Silenciar la música
+      InteractMusica.textContent = 'Volver a poner música';
+  } else {
+      Musica.muted = false;  // Volver a reproducir la música
+      InteractMusica.textContent = 'Silenciar';
+  }
+});
+
   // Eventos click con generación de cartas y errores según la dificultad
   DificultadFacil.addEventListener("click", function () {
+    Selected.play();
+    Musica.play();
     dificultadElegida = "facil";
     ocultarPanelDificultad();
     reiniciarCronometro();
@@ -305,6 +335,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   DificultadMedia.addEventListener("click", function () {
+    Selected.play();
+    Musica.play();
     dificultadElegida = "normal";
     ocultarPanelDificultad();
     reiniciarCronometro();
@@ -313,6 +345,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   DificultadDificil.addEventListener("click", function () {
+    Selected.play();
+    Musica.play();
     dificultadElegida = "dificil";
     ocultarPanelDificultad();
     reiniciarCronometro();

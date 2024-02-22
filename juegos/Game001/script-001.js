@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const erroresContainer = document.getElementById("errores");
   const menuGameOver = document.getElementById("juego-perdido");
   const menuVictoria = document.getElementById("juego-ganado");
+  const InteractMusica = document.getElementById('mutear');
   const VolverHaIntentarlo = document.querySelectorAll("#volver-ha-intentarlo");
   //Variables globales
   let tiempoTranscurrido = 0;
@@ -22,12 +23,21 @@ document.addEventListener("DOMContentLoaded", function () {
   let cartasSeleccionadas = [];
   let cantidadErrores = 0;
   //Declaramos los audios
+  let Selected = new Audio();
+  Selected.src = '/src/sfx/Aceptado.mp3';
   let cardFlip = new Audio();
   cardFlip.src = '/src/sfx/Carta.mp3';
   let correctoS = new Audio();
   correctoS.src = '/src/sfx/Correcto.mp3';  
   let WinSound = new Audio();
   WinSound.src = '/src/sfx/Victoria.mp3';
+  let DefeatSound = new Audio();
+  DefeatSound.src = '/src/sfx/Derrota.mp3';
+  let Fallo = new Audio();
+  Fallo.src = '/src/sfx/Fallo.mp3';
+  let Musica = new Audio();
+  Musica.src = '/src/bgm/Musica1.mp3';
+  Musica.loop = true;
   //Capturamos el usuario si esta previamente dado de alta
   const usuarioActual = obtenerUsuarioActual();
   // Mostrar nombre del usuario
@@ -152,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
         PuntosUser.innerHTML = `${puntos}`;
       });
     } else {
+      Fallo.play();
       cantidadErrores++;
       erroresContainer.children[cantidadErrores - 1].classList.add("errado");
     }
@@ -204,6 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para mostrar el menú de juego perdido
   function lanzarGameOver() {
+    DefeatSound.play();
     detenerCronometro();
     InterfazJuego.style.display = "none";
     menuGameOver.style.display = "flex";
@@ -253,6 +265,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+    // Para interactuar con la canción
+InteractMusica.addEventListener('click', function () {
+  if (InteractMusica.textContent === 'Silenciar') {
+      Musica.muted = true;  // Silenciar la música
+      InteractMusica.textContent = 'Volver a poner música';
+  } else {
+      Musica.muted = false;  // Volver a reproducir la música
+      InteractMusica.textContent = 'Silenciar';
+  }
+});
+
   // Agregar eventos al botón de volver a intentarlo
   VolverHaIntentarlo.forEach((button) => {
     button.addEventListener("click", function () {
@@ -262,6 +285,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Evento al hacer clic en la dificultad fácil
   DificultadFacil.addEventListener("click", function () {
+    Selected.play();
+    Musica.play();
     dificultadElegida = "facil";
     ocultarPanelDificultad();
     reiniciarCronometro();
@@ -271,6 +296,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Evento al hacer clic en la dificultad media
   DificultadMedia.addEventListener("click", function () {
+    Selected.play();
+    Musica.play();
     dificultadElegida = "medio";
     ocultarPanelDificultad();
     reiniciarCronometro();
@@ -280,6 +307,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Evento al hacer clic en la dificultad difícil
   DificultadDificil.addEventListener("click", function () {
+    Selected.play();
+    Musica.play();
     dificultadElegida = "dificil";
     ocultarPanelDificultad();
     reiniciarCronometro();

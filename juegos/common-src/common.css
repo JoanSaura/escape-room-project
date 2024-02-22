@@ -125,3 +125,9 @@ body {
   .errado {
     background-color: red;
   }
+
+#mutear {
+  background-color: black;
+  color: white;
+  border-radius: 15px;
+}

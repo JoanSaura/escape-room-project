@@ -17,8 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const cerrarInicioSesion = document.getElementById("cerrar-inicio-sesion");
   const menuInicioSesion = document.getElementById("iniciar-sesion-menu");
 
+  //Declaramos los sonidos
+  let BotonSeleciondo =  new Audio();
+  BotonSeleciondo.src = '/src/sfx/Casilla.mp3';
+  let Exitoso = new Audio();
+  Exitoso.src = '/src/sfx/Correcto.mp3';
+  let Pop = new Audio();
+  Pop.src = '/src/sfx/Carta.mp3';
+   // Para mostrar los diferentes pop-ups
   let popupVisible = null;
-  // Para mostrar los diferentes pop-ups
   function mostrarPopup(popup) {
     if (popupVisible) {
       popupVisible.style.display = "none";
@@ -38,11 +45,13 @@ document.addEventListener("DOMContentLoaded", function () {
   botonUsuarios.addEventListener("click", function () {
     cerrarPopup();
     const menuEstaOculto = parseInt(getComputedStyle(menuUsuarios).right) < 0;
+    BotonSeleciondo.play();
     menuUsuarios.style.right = menuEstaOculto ? "0" : "-250px";
   });
 
   // Cerrar menu de usuarios
   cerrarMenuUsuarios.addEventListener("click", function () {
+    BotonSeleciondo.play();
     cerrarPopup();
     const menuEstaOculto = parseInt(getComputedStyle(menuUsuarios).right) < 0;
     menuUsuarios.style.right = menuEstaOculto ? "0" : "-250px";
@@ -50,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Mostrar Creación de usuarios
   mostrarCrearUsuarioBtn.addEventListener("click", function () {
+    Pop.play();
     mostrarPopup(crearUsuarioDiv);
   });
 
@@ -109,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Cierra el formulario después de guardar
       crearUsuarioDiv.style.display = "none";
+      Exitoso.play();
       alert("Usuario creado exitosamente.");
       cerrarPopup();
     }
@@ -116,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Mostrar Menu de inicio de sesion
   BtninicioSesion.addEventListener("click", function () {
+    Pop.play();
     // Obtener la lista de usuarios desde el almacenamiento local
     const usuariosGuardados =
       JSON.parse(localStorage.getItem("usuarios")) || [];
@@ -129,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
       listItem.textContent = usuario.nombre;
       // Agregar un evento al hacer clic en un usuario para realizar acciones adicionales si es necesario
       listItem.addEventListener("click", function () {
+        Exitoso.play();
         // Puedes realizar acciones adicionales aquí, como iniciar sesión con el usuario seleccionado
         alert("Iniciar sesión como " + usuario.nombre);
         cerrarPopup();

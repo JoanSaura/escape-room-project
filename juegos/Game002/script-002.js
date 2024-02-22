@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const teclasJuego = document.querySelectorAll(".tecla");
   const menuVictoria = document.getElementById("juego-ganado");
   const juegoPerdido = document.getElementById("juego-perdido");
+  const InteractMusica = document.getElementById('mutear');
   const VolverHaIntentarlo = document.querySelectorAll("#volver-ha-intentarlo");
   // Cargamos los usuarios
   const usuarioActual = obtenerUsuarioActual();
@@ -23,10 +24,20 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(usuarioActual);
   } 
   //Declaramos los sonidos
+  let Selected = new Audio();
+  Selected.src = '/src/sfx/Aceptado.mp3';
   let letraSelecionada = new Audio();
   letraSelecionada.src = '/src/sfx/Letra clickada.mp3';
   let WinSound = new Audio();
   WinSound.src = '/src/sfx/Victoria.mp3';
+  let DefeatSound = new Audio();
+  DefeatSound.src = '/src/sfx/Derrota.mp3';
+  let Fallo = new Audio();
+  Fallo.src = '/src/sfx/Fallo.mp3';
+  let Musica = new Audio();
+  Musica.src = '/src/bgm/Musica2.mp3';
+  Musica.loop = true;
+
   //Variables globales
   let tiempoTranscurrido = 0;
   let intervalo;
@@ -34,6 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let dificultadElegida = "";
   let palabraSeleccionada = "";
   let cantidadErrores = 0;
+
+  
     // Función para mostrar el nombre del usuario
     function mostrarNombreUsuario(usuario) {
       nombreUser.textContent = usuario.nombre;
@@ -152,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // La letra es correcta
       palabraAdivinar.querySelectorAll(".letra").forEach((divLetra, index) => {
         if (palabraSeleccionada[index] === letra) {
+          letraSelecionada.play();
           divLetra.textContent = letra;
           puntos += 10;
           PuntosUser.innerText = puntos;
@@ -163,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
         LanzarWin();
       }
     } else {
+      Fallo.play();
       teclaClicada.classList.add("erroneo");
       cantidadErrores++;
       if (cantidadErrores <= erroresContainer.children.length) {
@@ -177,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
 // Agrega un evento de clic para cada tecla del teclado
 teclasJuego.forEach((tecla) => {
   tecla.addEventListener("click", function handleClick() {
-    letraSelecionada.play();
     comprobarLetra(tecla.textContent, tecla);
     // Desactiva el evento de clic después de comprobar la letra
     tecla.removeEventListener("click", handleClick);
@@ -197,6 +211,7 @@ teclasJuego.forEach((tecla) => {
 
   //Mostrar pantalla de derrota
   function LanzarGameOver() {
+    DefeatSound.play();
     detenerCronometro();
     InterfazJuego.style.display = "none";
     juegoPerdido.style.display = "flex";
@@ -252,10 +267,21 @@ teclasJuego.forEach((tecla) => {
   }
 }
 
-
+// Para interactuar con la canción
+InteractMusica.addEventListener('click', function () {
+  if (InteractMusica.textContent === 'Silenciar') {
+      Musica.muted = true;  // Silenciar la música
+      InteractMusica.textContent = 'Volver a poner música';
+  } else {
+      Musica.muted = false;  // Volver a reproducir la música
+      InteractMusica.textContent = 'Silenciar';
+  }
+});
 
   // Eventos click con generación de cartas y errores según la dificultad
   DificultadFacil.addEventListener("click", function () {
+    Selected.play();
+    Musica.play();
     dificultadElegida = "facil";
     ocultarPanelDificultad();
     reiniciarCronometro();
@@ -266,6 +292,8 @@ teclasJuego.forEach((tecla) => {
   });
 
   DificultadMedia.addEventListener("click", function () {
+    Selected.play();
+    Musica.play();
     dificultadElegida = "normal";
     ocultarPanelDificultad();
     reiniciarCronometro();
@@ -276,6 +304,8 @@ teclasJuego.forEach((tecla) => {
   });
 
   DificultadDificil.addEventListener("click", function () {
+    Selected.play();
+    Musica.play();
     dificultadElegida = "dificil";
     ocultarPanelDificultad();
     reiniciarCronometro();
