@@ -22,7 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarNombreUsuario(usuarioActual);
     console.log(usuarioActual);
   } 
-
+  //Declaramos los sonidos
+  let letraSelecionada = new Audio();
+  letraSelecionada.src = '/src/sfx/Letra clickada.mp3';
+  let WinSound = new Audio();
+  WinSound.src = '/src/sfx/Victoria.mp3';
   //Variables globales
   let tiempoTranscurrido = 0;
   let intervalo;
@@ -173,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Agrega un evento de clic para cada tecla del teclado
 teclasJuego.forEach((tecla) => {
   tecla.addEventListener("click", function handleClick() {
+    letraSelecionada.play();
     comprobarLetra(tecla.textContent, tecla);
     // Desactiva el evento de clic después de comprobar la letra
     tecla.removeEventListener("click", handleClick);
@@ -199,6 +204,7 @@ teclasJuego.forEach((tecla) => {
 
   //Mostrar pantalla de victoria
   function LanzarWin() {
+    WinSound.play();
     detenerCronometro();
     InterfazJuego.style.display = "none";
     menuVictoria.style.display = "flex";

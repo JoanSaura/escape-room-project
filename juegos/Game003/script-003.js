@@ -21,6 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarNombreUsuario(usuarioActual);
     console.log(usuarioActual);
   }
+  //Declaramos los sonidos
+  let casillaSelecionada = new Audio();
+  casillaSelecionada.src = '/src/sfx/Casilla.mp3';
+  let casillaCorrecta = new Audio();
+  casillaCorrecta.src = '/src/sfx/Correcto.mp3';
+  let WinSound = new Audio();
+  WinSound.src = '/src/sfx/Victoria.mp3';
   //Variables globales
   let tiempoTranscurrido = 0;
   let intervalo;
@@ -103,7 +110,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Añade un evento de clic a la celda
         celda.addEventListener("click", function () {
-          manejarEntradaUsuario(celda);
+          if (celda.classList.contains("numero-vacio")) {
+            casillaSelecionada.play();
+            manejarEntradaUsuario(celda);
+          }
         });
 
         celda.appendChild(img);
@@ -177,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ) {
         img.classList.remove("oculto-visualmente");
         celda.classList.remove("numero-vacio");
+        casillaCorrecta.play();
         puntos += 5;
         PuntosUser.innerHTML = `${puntos}`;
         const celdasOcultas = document.querySelectorAll(".numero-vacio");
@@ -235,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Mostrar pantalla de victoria
   function LanzarWin() {
+    WinSound.play();
     detenerCronometro();
     InterfazJuego.style.display = "none";
     juegoGanado.style.display = "flex";

@@ -21,6 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let puntos = 0;
   let cartasSeleccionadas = [];
   let cantidadErrores = 0;
+  //Declaramos los audios
+  let cardFlip = new Audio();
+  cardFlip.src = '/src/sfx/Carta.mp3';
+  let correctoS = new Audio();
+  correctoS.src = '/src/sfx/Correcto.mp3';  
+  let WinSound = new Audio();
+  WinSound.src = '/src/sfx/Victoria.mp3';
   //Capturamos el usuario si esta previamente dado de alta
   const usuarioActual = obtenerUsuarioActual();
   // Mostrar nombre del usuario
@@ -105,10 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Agregar eventos a las cartas del juego
   function agregarEventosCartas() {
     const cartas = document.querySelectorAll(".carta");
-
     cartas.forEach((carta) => {
       // Evento al hacer clic en una carta
       carta.addEventListener("click", function () {
+        cardFlip.play();
         if (
           !this.classList.contains("acertada") &&
           cartasSeleccionadas.length < 2
@@ -137,9 +144,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Verificar las cartas seleccionadas por el jugador
   function verificarCartasSeleccionadas() {
     const [carta1, carta2] = cartasSeleccionadas;
-
     if (carta1.dataset.imagen == carta2.dataset.imagen) {
       cartasSeleccionadas.forEach((carta) => {
+        correctoS.play(); 
         carta.classList.add("acertada");
         puntos += 10;
         PuntosUser.innerHTML = `${puntos}`;
@@ -204,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Función para mostrar el menú de juego ganado
   function lanzarWin() {
+    WinSound.play();
     detenerCronometro();
     InterfazJuego.style.display = "none";
     menuVictoria.style.display = "flex";
