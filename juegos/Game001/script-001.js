@@ -126,18 +126,16 @@ document.addEventListener("DOMContentLoaded", function () {
       // Evento al hacer clic en una carta
       carta.addEventListener("click", function () {
         cardFlip.play();
-        if (
-          !this.classList.contains("acertada") &&
-          cartasSeleccionadas.length < 2
-        ) {
-          cartasSeleccionadas.push(this);
-          this.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
-
-          if (cartasSeleccionadas.length === 2) {
-            setTimeout(verificarCartasSeleccionadas, 1000);
-          }
+        // Verificar si la carta ya está acertada o ya está seleccionada
+        if (!this.classList.contains("acertada") && !this.classList.contains("seleccionada") && cartasSeleccionadas.length < 2) {
+            cartasSeleccionadas.push(this);
+            this.style.backgroundImage = `url('img/${this.dataset.imagen}')`;
+            this.classList.add("seleccionada"); // Marcar la carta como seleccionada
+            if (cartasSeleccionadas.length === 2) {
+                setTimeout(verificarCartasSeleccionadas, 1000);
+            }
         }
-      });
+    });
 
       // Evento al quitar el mouse de una carta
       carta.addEventListener("mouseleave", function () {
@@ -154,43 +152,47 @@ document.addEventListener("DOMContentLoaded", function () {
   // Verificar las cartas seleccionadas por el jugador
   function verificarCartasSeleccionadas() {
     const [carta1, carta2] = cartasSeleccionadas;
-    if (carta1.dataset.imagen == carta2.dataset.imagen) {
-      cartasSeleccionadas.forEach((carta) => {
-        correctoS.play(); 
-        carta.classList.add("acertada");
-        puntos += 10;
-        PuntosUser.innerHTML = `${puntos}`;
-      });
+
+    if (carta1.dataset.imagen === carta2.dataset.imagen) {
+        cartasSeleccionadas.forEach((carta) => {
+            correctoS.play();
+            carta.classList.add("acertada");
+            puntos += 10;
+            PuntosUser.innerHTML = `${puntos}`;
+        });
     } else {
-      Fallo.play();
-      cantidadErrores++;
-      erroresContainer.children[cantidadErrores - 1].classList.add("errado");
+        Fallo.play();
+        cantidadErrores++;
+        erroresContainer.children[cantidadErrores - 1].classList.add("errado");
+        // Ocultar las cartas después de un breve período
+        setTimeout(() => {
+            cartasSeleccionadas.forEach((carta) => {
+                carta.style.backgroundImage = `url('img/Reverso.png')`;
+                carta.classList.remove("seleccionada");
+            });
+        }, 1000);
     }
 
     // Comprobar condiciones de victoria o derrota
     if (
-      (dificultadElegida == "facil" && puntos == 100) ||
-      (dificultadElegida == "medio" && puntos == 160) ||
-      (dificultadElegida == "dificil" && puntos == 200)
+        (dificultadElegida == "facil" && puntos == 100) ||
+        (dificultadElegida == "medio" && puntos == 160) ||
+        (dificultadElegida == "dificil" && puntos == 200)
     ) {
-      lanzarWin();
+        lanzarWin();
     }
 
     if (
-      (dificultadElegida == "facil" && cantidadErrores == 5) ||
-      (dificultadElegida == "medio" && cantidadErrores == 4) ||
-      (dificultadElegida == "dificil" && cantidadErrores == 3)
+        (dificultadElegida == "facil" && cantidadErrores == 5) ||
+        (dificultadElegida == "medio" && cantidadErrores == 4) ||
+        (dificultadElegida == "dificil" && cantidadErrores == 3)
     ) {
-      lanzarGameOver();
+        lanzarGameOver();
     }
 
     // Restablecer las cartas seleccionadas
-    cartasSeleccionadas.forEach((carta) => {
-      carta.style.backgroundImage = `url('img/Reverso.png')`;
-    });
-
     cartasSeleccionadas = [];
-  }
+}
   // Generar el tablero de cartas y errores
   function generarCartasYErrores(numCartas, numErrores) {
     tablero.innerHTML = "";
