@@ -9,16 +9,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const divNota = document.getElementById("nota");
   const divContra = document.getElementById("contra");
   const divFin = document.getElementById("fin");
+  //Declaramos los sonidos
+  let InteractCasilla = new Audio();
+  InteractCasilla.src = '/src/sfx/Casilla.mp3';
+  let QuitarNota = new Audio();
+  QuitarNota.src = '/src/sfx/Correcto.mp3';
+  //Declaramos la contraseña
   const contrasena = Array.from(
     { length: 3 },
     () => Math.floor(Math.random() * 9) + 1
   );
-
+  //Para que aplique la contraseña dentro del HTML
   function generarContrasena() {
     spanContrasena.textContent = contrasena.join("");
     console.log("La contraseña es: ", contrasena.join(""));
   }
-
+  //Para que cuando se clicka en subir numero se aumente el valor
   function subirNumeros(index) {
     let numeroActual = parseInt(numerosElementos[index].textContent);
     if (numeroActual < 9) {
@@ -26,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     numerosElementos[index].textContent = numeroActual;
   }
-
+  //Para que cuando se clicka en bajar numero se disminuya el valor
   function bajarNumeros(index) {
     let numeroActual = parseInt(numerosElementos[index].textContent);
     if (numeroActual > 0) {
@@ -34,14 +40,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     numerosElementos[index].textContent = numeroActual;
   }
-
+  //Generamos/Mostramos la contraseña
   generarContrasena();
-
+  //Que se quite la nota del final y se puede insertar la contraseña
   pasarNota.addEventListener("click", function () {
+    QuitarNota.play();
     divNota.style.display = "none";
     divContra.style.display = "flex";
   });
-
+  //Evento que comprueba si los numeros insertados en las celdas son iguales que la contraseña
   comprobacionBtn.addEventListener("click", function () {
     const numerosIngresados = Array.from(numerosElementos, (el) => parseInt(el.textContent));
 
@@ -61,15 +68,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   
-
+  //Para poder subir los numeros
   subirNumerosBotones.forEach((boton, index) => {
     boton.addEventListener("click", function () {
+      InteractCasilla.play();
       subirNumeros(index);
     });
   });
-
+  //Para poder bajar los numeros
   bajarNumerosBotones.forEach((boton, index) => {
     boton.addEventListener("click", function () {
+      InteractCasilla.play();
       bajarNumeros(index);
     });
   });

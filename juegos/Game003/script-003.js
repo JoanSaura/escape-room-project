@@ -262,15 +262,14 @@ document.addEventListener("DOMContentLoaded", function () {
       actualizarJuego(usuarioActual, dificultadElegida, juegoGanado);
       localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
     }
-    const todosSuperados =
-      usuarioActual.juegos["Juego1"].superado &&
-      usuarioActual.juegos["Juego2"].superado &&
-      usuarioActual.juegos["Juego3"].superado;
-
-    if (todosSuperados) {
-      // Redirigir a otra página
-      window.location.href = "/htmls/scape.html";
-    }
+    const JuegosSuperados =
+    usuarioActual.juegos["Juego1"].superado ||
+    usuarioActual.juegos["Juego2"].superado ||
+    usuarioActual.juegos["Juego3"].superado;
+  
+  if (JuegosSuperados === true) {
+    window.location.href = "/htmls/scape.html";
+  }
   }
   //Actualiza la informacion de los datos del juego que tiene el propio usuario
   function actualizarJuego(usuario, dificultad, nuevoEstado) {
