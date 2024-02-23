@@ -109,7 +109,7 @@ body {
 
 #juego-perdido > div:hover,
 #juego-ganado > div:hover {
-  background-color: blue;
+  background-color: rgb(109, 33, 5);
   color: aliceblue;
 }
 
