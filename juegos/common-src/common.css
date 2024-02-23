@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Single+Day&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap");
 body {
   margin: 0;
   padding: 0;
@@ -7,69 +7,69 @@ body {
 }
 
 .fondo-selector {
-    margin-top: none;
-    background-color: black;
-    width: 100%;
-    height: 100vh; 
-    justify-content: center;
-    align-items: center;
+  margin-top: none;
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 .fondo-selector h4 {
-    color: white;
-    font-size: 40px;
-    font-family: Sixtyfour;
+  color: white;
+  font-size: 40px;
+  font-family: Sixtyfour;
 }
 .dificultad {
-    width: 50%;
-    height: 45px;
-    border-radius: 24px;
-    font-size: 40px;
-    cursor: pointer;
+  width: 50%;
+  height: 45px;
+  border-radius: 24px;
+  font-size: 40px;
+  cursor: pointer;
 }
 
 #Principiante {
-    background-color: cadetblue;
-  }
-  
-  #Avanzado {
-    background-color: brown;
-  }
-  
-  #Locura {
-    background-image: url(/src/img/Estatica.jpg);
-    color: red;
-  }
+  background-color: cadetblue;
+}
+
+#Avanzado {
+  background-color: brown;
+}
+
+#Locura {
+  background-image: url(/src/img/Estatica.jpg);
+  color: red;
+}
 
 #selector-dificultad {
-    background-color: grey;
-    padding: 20px; 
-    text-align: center;
+  background-color: grey;
+  padding: 20px;
+  text-align: center;
 }
 
 #grid-dificultad {
-    margin-top: 25px;
-    display: flex;
-    align-items: center;
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
 }
 
 #selector-dificultad .dificultad {
-    font-family: 'Single Day', sans-serif;
-    margin: 10px; 
+  font-family: "Single Day", sans-serif;
+  margin: 10px;
 }
 #interfaz-juego {
-    display: none;
+  display: none;
 }
 #menu-superior {
-    margin-top: 0;
-    background-color: gray;
-    display: flex;
-    align-items: center; 
-    justify-content: space-between;
+  margin-top: 0;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 #menu-superior > p {
-    color: aliceblue;
-    font-size: 25px;
-    font-family: 'Single Day', sans-serif;
+  color: aliceblue;
+  font-size: 25px;
+  font-family: "Single Day", sans-serif;
 }
 #cronometro {
   margin-left: 25px;
@@ -78,7 +78,8 @@ body {
   margin-right: 25px;
 }
 
-#juego-perdido, #juego-ganado {
+#juego-perdido,
+#juego-ganado {
   display: none;
   flex-direction: column;
   align-items: center;
@@ -93,7 +94,8 @@ body {
   border-radius: 15px;
 }
 
-#juego-perdido > div, #juego-ganado > div {
+#juego-perdido > div,
+#juego-ganado > div {
   display: inline-block;
   background-color: rgb(39, 38, 36);
   color: aliceblue;
@@ -105,26 +107,30 @@ body {
   text-align: center;
 }
 
-#juego-perdido > div:hover, #juego-ganado > div:hover  {
+#juego-perdido > div:hover,
+#juego-ganado > div:hover {
   background-color: blue;
   color: aliceblue;
-} 
+}
 
 #juego-ganado > div > a:visited {
   text-decoration: none;
   color: aliceblue;
 }
 
-    
-  .error {
-    background-color: rgb(73, 73, 73);
-    width: 20px;
-    height: 20px;
-    margin: 5px;
-  }
-  .errado {
-    background-color: red;
-  }
+.manual:visited {
+  text-decoration: none;
+  color: aliceblue;
+}
+.error {
+  background-color: rgb(73, 73, 73);
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+}
+.errado {
+  background-color: red;
+}
 
 #mutear {
   background-color: black;
