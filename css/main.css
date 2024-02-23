@@ -6,6 +6,10 @@ body {
   background-color: black;
 }
 
+a:visited {
+  text-decoration: none !important;
+  color: aliceblue !important;
+}
 
 .menu-botones {
   margin-top: 125px;
