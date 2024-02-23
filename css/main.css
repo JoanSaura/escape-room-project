@@ -29,8 +29,8 @@ body {
   align-items: center;
 }
 .boton-manual a:visited {
-  text-decoration: none; 
-  color: aliceblue; 
+  text-decoration: none !important;
+  color: aliceblue !important;
 }
 .boton-menu, .gestion-usuarios{
   background-color: rgb(100, 36, 36);
