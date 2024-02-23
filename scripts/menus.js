@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     popup.style.display = "flex";
     popupVisible = popup;
   }
+  Musica.play();
   // Para cerrar los pop-ups
   function cerrarPopup() {
     if (popupVisible) {
@@ -180,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "/juegos/Game001/index-001.html";
     }
   });
-  Musica.play();
     // Para interactuar con la canción
 InteractMusica.addEventListener('click', function () {
   if (InteractMusica.textContent === 'Silenciar música') {
