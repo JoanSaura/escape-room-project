@@ -152,47 +152,54 @@ document.addEventListener("DOMContentLoaded", function () {
   // Verificar las cartas seleccionadas por el jugador
   function verificarCartasSeleccionadas() {
     const [carta1, carta2] = cartasSeleccionadas;
-
+  
     if (carta1.dataset.imagen === carta2.dataset.imagen) {
-        cartasSeleccionadas.forEach((carta) => {
-            correctoS.play();
-            carta.classList.add("acertada");
-            puntos += 10;
-            PuntosUser.innerHTML = `${puntos}`;
-        });
+      cartasSeleccionadas.forEach((carta) => {
+        correctoS.play();
+        carta.classList.add("acertada");
+        puntos += 10;
+        PuntosUser.innerHTML = `${puntos}`;
+      });
     } else {
-        Fallo.play();
-        cantidadErrores++;
-        erroresContainer.children[cantidadErrores - 1].classList.add("errado");
-        // Ocultar las cartas después de un breve período
-        setTimeout(() => {
-            cartasSeleccionadas.forEach((carta) => {
-                carta.style.backgroundImage = `url('img/Reverso.png')`;
-                carta.classList.remove("seleccionada");
-            });
-        }, 1000);
+      Fallo.play();
+      cantidadErrores++;
+      erroresContainer.children[cantidadErrores - 1].classList.add("errado");
     }
-
-    // Comprobar condiciones de victoria o derrota
-    if (
-        (dificultadElegida == "facil" && puntos == 100) ||
-        (dificultadElegida == "medio" && puntos == 160) ||
-        (dificultadElegida == "dificil" && puntos == 200)
-    ) {
+  
+    // Ocultar las cartas después de un breve período
+    setTimeout(() => {
+      cartasSeleccionadas.forEach((carta) => {
+        carta.style.backgroundImage = `url('img/Reverso.png')`;
+        carta.classList.remove("seleccionada");
+      });
+      cartasSeleccionadas = []; // Limpiar las cartas seleccionadas
+  
+      // Comprobar condiciones de victoria o derrota después de ocultar las cartas
+      if (verificarVictoria()) {
         lanzarWin();
-    }
-
-    if (
-        (dificultadElegida == "facil" && cantidadErrores == 5) ||
-        (dificultadElegida == "medio" && cantidadErrores == 4) ||
-        (dificultadElegida == "dificil" && cantidadErrores == 3)
-    ) {
+      } else if (verificarDerrota()) {
         lanzarGameOver();
-    }
+      }
+    }, 100); 
+  }
 
-    // Restablecer las cartas seleccionadas
-    cartasSeleccionadas = [];
-}
+  // Verificar condiciones de victoria
+  function verificarVictoria() {
+    return (
+      (dificultadElegida == "facil" && puntos === 100) ||
+      (dificultadElegida == "medio" && puntos === 160) ||
+      (dificultadElegida == "dificil" && puntos === 200)
+    );
+  }
+
+  // Verificar condiciones de derrota
+  function verificarDerrota() {
+    return (
+      (dificultadElegida == "facil" && cantidadErrores === 5) ||
+      (dificultadElegida == "medio" && cantidadErrores === 4) ||
+      (dificultadElegida == "dificil" && cantidadErrores === 3)
+    );
+  }
   // Generar el tablero de cartas y errores
   function generarCartasYErrores(numCartas, numErrores) {
     tablero.innerHTML = "";
