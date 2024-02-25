@@ -13,9 +13,11 @@ body {
   font-size: 19px;
   transition: background 1.5s ease;
 }
-
+.caja-abierta {
+  background-image: url(/src/img/Caja\ Abierta.jpg);
+}
 #contra {
-  margin: 125px auto;
+  margin: 225px auto;
   display: none;
   align-items: center;
   justify-content: center;

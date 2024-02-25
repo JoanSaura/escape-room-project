@@ -14,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
   InteractCasilla.src = '/src/sfx/Carta.mp3';
   let QuitarNota = new Audio();
   QuitarNota.src = '/src/sfx/Correcto.mp3';
+  let sondioErroneo = new Audio();
+  sondioErroneo.src = '/src/sfx/Fallo.mp3';
+  let cajaAbierta = new Audio();
+  cajaAbierta.src = '/src/sfx/Caja Abierta.mp3';
   let musicaSueño = new Audio();
   musicaSueño.src = '/src/bgm/Sueño.mp3'
   //Declaramos la contraseña
@@ -55,8 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const numerosIngresados = Array.from(numerosElementos, (el) => parseInt(el.textContent));
 
     if (JSON.stringify(numerosIngresados) === JSON.stringify(contrasena)) {
+      body.classList.add('caja-abierta');
+      cajaAbierta.play();
       divContra.style.display = "none";
-
       // Espera unos segundos antes de agregar la clase sueño
       setTimeout(function () {
         // Transición a fondo sueño
@@ -67,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
           divFin.classList.add("mostrar");
         }, 1000);
       }, 1000);
+    } else {
+      sondioErroneo.play();
     }
   });
   
