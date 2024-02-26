@@ -188,7 +188,7 @@ InteractMusica.addEventListener('click', function () {
       InteractMusica.textContent = 'Volver a poner música';
   } else {
       Musica.muted = false;  // Volver a reproducir la música
-      InteractMusica.textContent = 'Silenciar';
+      InteractMusica.textContent = 'Silenciar música';
   }
 });
 });

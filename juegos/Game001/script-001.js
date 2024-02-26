@@ -311,7 +311,7 @@ InteractMusica.addEventListener('click', function () {
     ocultarPanelDificultad();
     reiniciarCronometro();
     iniciarCronometro();
-    generarCartasYErrores(16, 4);
+    generarCartasYErrores(16, 5);
   });
 
   // Evento al hacer clic en la dificultad difícil
@@ -322,6 +322,6 @@ InteractMusica.addEventListener('click', function () {
     ocultarPanelDificultad();
     reiniciarCronometro();
     iniciarCronometro();
-    generarCartasYErrores(20, 3);
+    generarCartasYErrores(20, 6);
   });
 });

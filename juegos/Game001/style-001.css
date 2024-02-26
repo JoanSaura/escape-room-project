@@ -3,6 +3,9 @@
 
 body {
     background-image: url(/src/img/Oxido.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 #tablero {
