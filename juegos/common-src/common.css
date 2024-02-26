@@ -120,7 +120,7 @@ body {
 
 a:visited {
   text-decoration: none !important;
-  color: aliceblue !important;
+  color: aliceblue;
 }
 .error {
   background-color: rgb(73, 73, 73);

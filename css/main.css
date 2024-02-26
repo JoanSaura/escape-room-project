@@ -32,9 +32,11 @@ a:visited {
   justify-content: center;
   align-items: center;
 }
+.manual a {
+  color: aliceblue ;
+}
 .manual a:visited {
   text-decoration: none !important;
-  color: aliceblue !important;
 }
 .boton-menu, .gestion-usuarios{
   background-color: rgb(100, 36, 36);
