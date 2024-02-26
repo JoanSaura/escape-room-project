@@ -7,8 +7,8 @@ body {
 }
 
 a:visited {
-  text-decoration: none !important;
-  color: aliceblue !important;
+  text-decoration: none;
+  color: aliceblue;
 }
 
 .menu-botones {
